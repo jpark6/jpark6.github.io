@@ -1,7 +1,6 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
-import Spinner from "../components/spinner";
 import BlogCard from "../components/blogCard";
 import { Grid } from "@material-ui/core";
 
@@ -15,7 +14,7 @@ interface indexPageProps {
             body: string,
             frontmatter: {
               title: string,
-              path: string,
+              slug: string,
               date: string,
               thumbnail: string,
             },
@@ -33,7 +32,6 @@ interface indexPageProps {
 export default function IndexPage({ data }: indexPageProps){
   return (
     <>
-      <Spinner/>
       <Layout>
         <div className={'main-container'}>
           <h4>{data.allMdx.totalCount} Posts</h4>
