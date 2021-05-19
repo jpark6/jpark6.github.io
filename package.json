@@ -1,9 +1,10 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "gatsby-blog-typescript",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "version": "0.1.1",
+  "homepage": ".",
+  "author": "Jake Park<qkstjr09@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
