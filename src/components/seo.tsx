@@ -6,11 +6,18 @@
  */
 
 import * as React from "react"
+// @ts-ignore
 import PropTypes from "prop-types"
+// @ts-ignore
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-
-function Seo({ description, lang, meta, title }) {
+interface seoProps {
+  description: string
+  lang: string
+  meta: any
+  title: string
+}
+function Seo({ description, lang, meta, title }: seoProps) {
   const { site } = useStaticQuery(
     graphql`
       query {
