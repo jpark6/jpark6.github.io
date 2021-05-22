@@ -32,7 +32,7 @@ interface blogCardProps {
 export default function BlogCard({ node }: blogCardProps){
   const blog = node;
 
-  /**
+ /**
    * card 클릭시 해당 게시글로 이동함.
    * @param link
    */
