@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 interface sideBarProps {
   open: boolean
-  onHandleDrawerClose: any
+  onHandleDrawerClose: ()=>void
 }
 
 export default function SideBar({open, onHandleDrawerClose}: sideBarProps){
@@ -142,5 +142,5 @@ export default function SideBar({open, onHandleDrawerClose}: sideBarProps){
         </List>
         <Divider />
       </Drawer>
-  );
+  )
 }

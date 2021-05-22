@@ -82,11 +82,11 @@ export default function Layout({children}: layoutProps) {
 
   const handleDrawerOpen = () => {
     setOpen(true);
-  };
+  }
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
+  }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -99,5 +99,5 @@ export default function Layout({children}: layoutProps) {
       >{children}
       </main>
     </div>
-  );
+  )
 }
