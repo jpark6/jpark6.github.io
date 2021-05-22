@@ -12,21 +12,30 @@ import {MDXRenderer} from "gatsby-plugin-mdx";
 
 interface blogCardProps {
   node:{
-    id: string,
-    body: string,
+    id: string
+    body: string
     frontmatter: {
-      title: string,
-      slug: string,
-      date: string,
-      thumbnail: string,
-    },
+      title: string
+      slug: string
+      date: string
+      thumbnail: string
+    }
     html: string
   }
 }
 
+/**
+ * mdx/md 파일 card 형태로 화면에 출력
+ * @param {node} - mdx/md 파일 정보
+ * @constructor
+ */
 export default function BlogCard({ node }: blogCardProps){
   const blog = node;
 
+ /**
+   * card 클릭시 해당 게시글로 이동함.
+   * @param link
+   */
   const goPost = (link: string) => {
     navigate(link);
   }

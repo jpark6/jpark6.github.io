@@ -52,7 +52,7 @@ export default function IndexPage({ data }: indexPageProps){
 export const query = graphql`
 query {
   allMdx(
-    sort: {order: ASC, fields: [frontmatter___mainOrder, frontmatter___subOrder, frontmatter___postOrder]}
+    sort: {order: DESC, fields: [frontmatter___date]}
   ) {
     totalCount
     edges {

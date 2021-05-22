@@ -5,16 +5,24 @@ import { PageProps, Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-type DataProps = {
+interface DataProps {
   site: {
     buildTime: string
   }
 }
+interface usingTypescriptProps {
+  data: {
+    site: {
+      buildTime: string
+    }
+  }
+  path: string
+}
 
-export default function UsingTypescript ({ data, path }) {
+export default function UsingTypescript ({ data, path }: usingTypescriptProps) {
   return (
-    <Layout>
-      <Seo title="Using TypeScript" />
+    <>
+      <Seo title="Using TypeScript" lang="ko" />
       <h1>Gatsby supports TypeScript by default!</h1>
       <p>
         This means that you can create and write <em>.ts/.tsx</em> files for your
@@ -37,7 +45,7 @@ export default function UsingTypescript ({ data, path }) {
         .
       </p>
       <Link to="/">Go back to the homepage</Link>
-    </Layout>
+    </>
   )
 }
 

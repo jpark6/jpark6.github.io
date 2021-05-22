@@ -1,50 +1,60 @@
-import * as React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import {graphql, Link, useStaticQuery} from "gatsby";
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-}));
+import * as React from 'react'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import Drawer from '@material-ui/core/Drawer'
+import List from '@material-ui/core/List'
+import Divider from '@material-ui/core/Divider'
+import IconButton from '@material-ui/core/IconButton'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import ExpandMore from '@material-ui/icons/ExpandMore'
+import ExpandLess from '@material-ui/icons/ExpandLess'
+import Collapse from '@material-ui/core/Collapse'
+import Settings from '@material-ui/icons/Settings'
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
+import MainMenu from './mainMenu'
+import {graphql, useStaticQuery} from 'gatsby'
+import { useState } from "react"
 
 interface sideBarProps {
   open: boolean
-  onHandleDrawerClose: any
+  onHandleDrawerClose: ()=>void
+  drawerWidth: number
 }
 
-export default function SideBar({open, onHandleDrawerClose}: sideBarProps){
+export default function SideBar({open, onHandleDrawerClose, drawerWidth}: sideBarProps){
+  const sideBarStyle = makeStyles((theme) => ({
+    hide: {
+      display: 'none',
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    drawerHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      justifyContent: 'flex-end',
+    },
+    contentShift: {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    },
+  }));
+
   const data = useStaticQuery(graphql`
     query slugQuery {
       allMdx {
@@ -68,6 +78,8 @@ export default function SideBar({open, onHandleDrawerClose}: sideBarProps){
       }
     }
   }
+
+  const [menuToggle, setMenuToggle] = useState(true)
   /**
    * path 경로 Map으로 변환
    * /blog/[0002]etc/test/hello1    =>    Map([0002]etc:[test:[hello1, hello2]],
@@ -78,7 +90,7 @@ export default function SideBar({open, onHandleDrawerClose}: sideBarProps){
    * /blog/[0000]develop/gatsby/3.deploy
    */
   data.allMdx.edges.forEach(
-    (edge: edgeProps , idx: number) => {
+    (edge: edgeProps) => {
       const slug_arr = edge.node.frontmatter.slug.split('/');
       let dir_idx = dir_arr.findIndex(e=> e.key === slug_arr[1]);
       if(dir_idx === -1) {
@@ -98,9 +110,9 @@ export default function SideBar({open, onHandleDrawerClose}: sideBarProps){
         }
       }
     });
-  const classes = useStyles();
+  const classes = sideBarStyle();
   const theme = useTheme();
-  
+
   // console.log('dirarr:',dir_arr);
   return (
       <Drawer
@@ -119,28 +131,9 @@ export default function SideBar({open, onHandleDrawerClose}: sideBarProps){
         </div>
         <Divider />
         <List>
-          { dir_arr.map(e => (
-            <ListItem button key={e.key}>
-              <ListItemText primary={e.key} />
-              <ul key={e.key}>
-              { e.value.map(e1 => (
-                  <li key={e1.key}>
-                    <span>{e1.key}</span>
-                    <ul key={e1.key} />
-                    <ul>
-                      { e1.value.map(e2 => (
-                        <li key={e2.value}>
-                          <Link to={e2.value}>{e2.key}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-              ))}
-              </ul>
-            </ListItem>
-          ))}
+        { dir_arr.map((e,i) => ( <MainMenu elem={e} isFirst={i===0}/> ))}
         </List>
         <Divider />
       </Drawer>
-  );
+  )
 }

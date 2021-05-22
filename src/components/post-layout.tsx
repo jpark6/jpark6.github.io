@@ -2,11 +2,12 @@ import * as React from 'react'
 // @ts-ignore
 import Helmet from 'react-helmet'
 import Layout from './layout'
+import Seo from './seo'
 import {graphql} from "gatsby";
 import {MDXRenderer} from "gatsby-plugin-mdx";
 
 interface postLayoutProps {
-  path: string,
+  path: string
   data: {
     mdx: {
       frontmatter: {
@@ -18,19 +19,13 @@ interface postLayoutProps {
   }
 }
 
-export default function PostLayout({ path, data}: postLayoutProps) {
-  const blog = data.mdx;
+export default function PostLayout({path, data}: postLayoutProps) {
   return (
     <Layout>
-      <Helmet>
-        <title>{blog.frontmatter.title}</title>
-      </Helmet>
+      <Seo title={data.mdx.frontmatter.title} lang='ko'></Seo>
       <article>
-        <header>
-          <h1>{blog.frontmatter.title}</h1>
-          <time>Date: {blog.frontmatter.date}</time>
-        </header>
-        <MDXRenderer>{blog.body}</MDXRenderer>
+        <time>Date: {data.mdx.frontmatter.date}</time>
+        <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </article>
     </Layout>
   )
