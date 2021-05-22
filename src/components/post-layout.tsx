@@ -23,9 +23,6 @@ export default function PostLayout({path, data}: postLayoutProps) {
   return (
     <Layout>
       <Seo title={data.mdx.frontmatter.title} lang='ko'></Seo>
-      <Helmet>
-        <title>{data.mdx.frontmatter.title}</title>
-      </Helmet>
       <article>
         <time>Date: {data.mdx.frontmatter.date}</time>
         <MDXRenderer>{data.mdx.body}</MDXRenderer>

@@ -6,20 +6,59 @@ import Typography from "@material-ui/core/Typography";
 import React, {ReactElement} from "react";
 import {AppBar} from "@material-ui/core";
 import {Link} from "gatsby";
+import { makeStyles } from "@material-ui/core/styles"
 
 interface titleBarProps {
   open: boolean
   onHandleDrawerOpen: any
-  useStyle: {
-    appBar: any
-    appBarShift: any
-    menuButton: any
-    hide: any
-    titleBarLink: any
-  }
+  drawerWidth: number
 }
-export default function TitleBar({open, onHandleDrawerOpen, useStyle}: titleBarProps){
-  const classes = useStyle
+export default function TitleBar({open, onHandleDrawerOpen, drawerWidth}: titleBarProps){
+  const titleBarStyle =  makeStyles((theme) => ({
+    appBar: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    appBarShift: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    titleBarLink: {
+      color: '#FFF',
+      textDecoration: 'none',
+      hover: {
+        color: 'red'
+      }
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    hide: {
+      display: 'none',
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    drawerHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+      justifyContent: 'flex-end',
+    },
+  }))
+  const classes = titleBarStyle()
   return (
     <AppBar
       position="absolute"
