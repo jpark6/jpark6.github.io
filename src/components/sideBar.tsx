@@ -123,7 +123,7 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: 
         </div>
         <Divider />
         <List>
-        { dir_arr.map((e,i) => ( <MainMenu elem={e} slug={slug} /> ))}
+        { dir_arr.map((e,i) => ( <MainMenu key={e.key} elem={e} slug={slug} /> ))}
         </List>
         <Divider />
       </Drawer>
