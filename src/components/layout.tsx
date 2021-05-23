@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Sidebar from "./sideBar";
 import TitleBar from "./titleBar";
 import { useEffect, useState } from "react"
+import Aside from './aside';
 
 interface layoutProps {
   children: React.ReactNode
@@ -67,6 +68,7 @@ export default function Layout({children, slug}: layoutProps) {
         })}
       >{children}
       </main>
+      <Aside />
     </div>
   )
 }
