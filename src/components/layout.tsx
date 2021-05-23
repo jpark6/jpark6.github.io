@@ -13,8 +13,8 @@ interface layoutProps {
 }
 
 export default function Layout({children, slug}: layoutProps) {
-  const [open, setOpen] = useState(typeof window == 'object' && window.innerWidth > 500);
-  const [drawerWidth, setDrawerWidth] = useState(320);
+  const [open, setOpen] = useState(true);
+  const drawerWidth = 320;
   const useStyle = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -41,21 +41,6 @@ export default function Layout({children, slug}: layoutProps) {
 
   const handleDrawerOpen = () => setOpen(true)
   const handleDrawerClose = () => setOpen(false)
-  const changeDrawerWidth = (width: number) => setDrawerWidth(width)
-
-  const initDrawer = () => { window.innerWidth > 500 && handleDrawerOpen() }
-  const handleResize = () => {
-    window.innerWidth <= 500 ? changeDrawerWidth(window.innerWidth) : changeDrawerWidth(320)
-  }
-
-  useEffect(() => {
-    if(typeof window !== 'object') return
-    initDrawer()
-    window.addEventListener('resize', handleResize)
-    return () => { // cleanup
-      window.removeEventListener('resize', handleResize)
-    }
-  })
 
   return (
     <div className={classes.root}>
