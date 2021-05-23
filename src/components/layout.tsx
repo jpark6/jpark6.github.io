@@ -49,14 +49,12 @@ export default function Layout({children, slug}: layoutProps) {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      if(typeof window !== 'object') return
-      initDrawer()
-      window.addEventListener('resize', handleResize)
-      return () => { // cleanup
-        window.removeEventListener('resize', handleResize)
-      }
-    },1000);
+    if(typeof window !== 'object') return
+    initDrawer()
+    window.addEventListener('resize', handleResize)
+    return () => { // cleanup
+      window.removeEventListener('resize', handleResize)
+    }
   })
 
   return (
