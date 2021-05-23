@@ -45,7 +45,7 @@ exports.createPages = ({ graphql, actions }) => {
     results.data.allMdx.edges.forEach(({node}) => {
       createPage({
         path: node.frontmatter.slug,
-        component: path.resolve(`./src/components/post-layout.tsx`),
+        component: path.resolve(`./src/layouts/post-layout.tsx`),
         context: {
           slug: node.frontmatter.slug
         }
