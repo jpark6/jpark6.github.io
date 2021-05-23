@@ -13,6 +13,7 @@ interface postLayoutProps {
       frontmatter: {
         title: string
         date: string
+        slug: string
       }
       body: string
     }
@@ -21,7 +22,7 @@ interface postLayoutProps {
 
 export default function PostLayout({path, data}: postLayoutProps) {
   return (
-    <Layout>
+    <Layout slug={data.mdx.frontmatter.slug}>
       <Seo title={data.mdx.frontmatter.title} lang='ko'></Seo>
       <article>
         <time>Date: {data.mdx.frontmatter.date}</time>
@@ -38,6 +39,7 @@ export const query = graphql`
       frontmatter {
         title
         date
+        slug
       }
     }
   }

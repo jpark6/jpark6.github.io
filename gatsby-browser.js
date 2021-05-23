@@ -3,4 +3,5 @@
  * See: https://www.gatsbyjs.com/docs/browser-apis/
  */
 
-require("/src/components/post.sass")
+require("/src/styles/layout.sass")
+require("/src/styles/post.sass")

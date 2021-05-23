@@ -77,7 +77,7 @@ export default function TitleBar({open, onHandleDrawerOpen, drawerWidth}: titleB
           <MenuIcon />
         </IconButton>
         <Typography variant="h4" noWrap>
-          <Link className={clsx(classes.titleBarLink)} to="/">jpblog</Link>
+          <Link className={clsx(classes.titleBarLink)} to="/">jPark's Blog</Link>
         </Typography>
       </Toolbar>
     </AppBar>

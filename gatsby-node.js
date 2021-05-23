@@ -29,7 +29,7 @@ exports.createPages = ({ graphql, actions }) => {
   const {createPage} = actions
   return graphql(`{
   allMdx(
-    sort: {order: DESC, fields: [frontmatter___date, frontmatter___postOrder, frontmatter___subOrder, frontmatter___mainOrder]}
+    sort: {order: ASC, fields: [frontmatter___mainOrder, frontmatter___subOrder, frontmatter___postOrder, frontmatter___date]}
   ) {
     edges {
       node {

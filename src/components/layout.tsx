@@ -8,11 +8,12 @@ import { useEffect, useState } from "react"
 
 interface layoutProps {
   children: React.ReactNode
+  slug?: string
 }
 
-export default function Layout({children}: layoutProps) {
-  const [open, setOpen] = useState(window.innerWidth > 500);
-  const [drawerWidth, setDrawerWidth] = useState(240);
+export default function Layout({children, slug}: layoutProps) {
+  const [open, setOpen] = useState(typeof window == 'object' && window.innerWidth > 500);
+  const [drawerWidth, setDrawerWidth] = useState(320);
   const useStyle = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -33,7 +34,7 @@ export default function Layout({children}: layoutProps) {
       }),
       marginLeft: 0,
     },
-  }));
+  }))
 
   const classes = useStyle();
 
@@ -41,14 +42,14 @@ export default function Layout({children}: layoutProps) {
   const handleDrawerClose = () => setOpen(false)
   const changeDrawerWidth = (width: number) => setDrawerWidth(width)
 
+  const initDrawer = () => { window.innerWidth > 500 && handleDrawerOpen() }
   const handleResize = () => {
-    if(window.innerWidth <= 500){
-      changeDrawerWidth(window.innerWidth)
-    } else {
-      changeDrawerWidth(320)
-    }
+    window.innerWidth <= 500 ? changeDrawerWidth(window.innerWidth) : changeDrawerWidth(320)
   }
+
   useEffect(() => {
+    if(typeof window !== 'object') return
+    initDrawer()
     window.addEventListener('resize', handleResize)
     return () => { // cleanup
       window.removeEventListener('resize', handleResize)
@@ -59,7 +60,7 @@ export default function Layout({children}: layoutProps) {
     <div className={classes.root}>
       <CssBaseline />
       <TitleBar open={open} onHandleDrawerOpen={handleDrawerOpen} drawerWidth={drawerWidth} />
-      <Sidebar open={open} onHandleDrawerClose={handleDrawerClose} drawerWidth={drawerWidth} />
+      <Sidebar open={open} onHandleDrawerClose={handleDrawerClose} drawerWidth={drawerWidth} slug={slug} />
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,

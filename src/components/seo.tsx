@@ -39,7 +39,7 @@ export default function Seo({ description, lang, meta, title }: seoProps) {
   )
 
   const defaultDescription = description || site.siteMetadata.description || defaultSeoProps.description
-  const defaultTitle = title || site.siteMetadata.title || defaultSeoProps.title
+  const defaultTitle = site.siteMetadata.title || defaultSeoProps.title
   const defaultLang = lang || defaultSeoProps.lang
   const defaultMeta = [
     { name: `description`, content: defaultDescription, },
