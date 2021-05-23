@@ -384,7 +384,7 @@ div.beforeLoadPage
   float: left
   background-color: turquoise
 main
-  width: 100%
+  width: calc(100% - 300px)
   float: left
   margin-top: 60px
   ol
@@ -420,7 +420,16 @@ main
     font-size: .75rem
   .MuiSvgIcon-root
     color: #777
-
+aside
+  float: right
+  width: 300px
+  height: 100vh
+  margin-top: 70px
 @media only screen and (max-width: 480px)
   html
     font-size: 100%
+@media only screen and (max-width: 768px)
+  main
+    width: 100%
+  aside
+    display: none
