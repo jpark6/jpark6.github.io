@@ -387,6 +387,12 @@ main
   width: 100%
   float: left
   margin-top: 60px
+  ol
+    padding-inline-start: 20px
+  ul
+    padding-inline-start: 20px
+  img
+    max-width: 100%
   /* index card형 게시글 */
   .MuiCard-root
     width: 100%
@@ -400,20 +406,20 @@ main
       border-top: 1px solid #e5e5e5
       border-bottom: 1px solid #e5e5e5
     > .MuiCardContent-root /* card content */
-      height: 250px
+      height: 150px
       padding: 0
       margin: 16px
       overflow: hidden
-  ol
-    padding-inline-start: 20px
-  ul
-    padding-inline-start: 20px
-  img
-    max-width: 100%
-.MuiListItem-gutters
+
+/* sideBar menu */
+.MuiDrawer-root
+  .MuiListItem-gutters
     padding-left: 10px
     padding-right: 20px
-
+  .MuiTypography-body1
+    font-size: .75rem
+  .MuiSvgIcon-root
+    color: #777
 
 @media only screen and (max-width: 480px)
   html
