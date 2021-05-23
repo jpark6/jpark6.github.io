@@ -20,7 +20,6 @@ export default function SubMenu({ elem, slug}: subMenuProps) {
     <>
       <ListItem
         button
-        key={elem.key}
         onClick={() => setSubMenuToggle(!subMenuToggle)}
       >
         <ListItemIcon style={{ minWidth: '30px'}}>
@@ -31,7 +30,6 @@ export default function SubMenu({ elem, slug}: subMenuProps) {
       </ListItem>
       <Collapse
         in={subMenuToggle}
-        key={elem.key + "collapse"}
         timeout="auto"
         unmountOnExit
       >

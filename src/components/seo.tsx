@@ -7,8 +7,6 @@
 
 import * as React from "react"
 // @ts-ignore
-import PropTypes from "prop-types"
-// @ts-ignore
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 interface seoProps {

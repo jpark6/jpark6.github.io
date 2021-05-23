@@ -37,7 +37,6 @@ export default function MainMenu({elem, slug}: mainMenuProps) {
     <>
       <ListItem
         button
-        key={elem.key}
         onClick={() => {
           setMenuToggle(!menuToggle)
         }}
@@ -50,14 +49,13 @@ export default function MainMenu({elem, slug}: mainMenuProps) {
       </ListItem>
       <Collapse
         in={menuToggle}
-        key={elem.key + "collapse"}
         timeout="auto"
         unmountOnExit
       >
         <List component="div" disablePadding style={{paddingLeft: '35px'}}>
           {elem.value.map((e, i) => {
             return (
-              <SubMenu elem={e} slug={slug}/>
+              <SubMenu key={e.key} elem={e} slug={slug}/>
             )
           })}
         </List>
