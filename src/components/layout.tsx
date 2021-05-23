@@ -49,13 +49,15 @@ export default function Layout({children, slug}: layoutProps) {
   }
 
   useEffect(() => {
-    if(typeof window !== 'object') return
-    initDrawer()
-    window.addEventListener('resize', handleResize)
-    return () => { // cleanup
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+    setTimeout(() => {
+      if(typeof window !== 'object') return
+      initDrawer()
+      window.addEventListener('resize', handleResize)
+      return () => { // cleanup
+        window.removeEventListener('resize', handleResize)
+      }
+    },1000);
+  })
 
   return (
     <div className={classes.root}>

@@ -31,6 +31,7 @@ interface indexPageProps {
  * @constructor
  */
 export default function IndexPage({ data }: indexPageProps){
+
   return (
     <>
       <Spinner />
