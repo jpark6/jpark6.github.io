@@ -1,11 +1,5 @@
 import * as React from "react"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
-import Drawer from "@material-ui/core/Drawer"
-import List from "@material-ui/core/List"
-import Divider from "@material-ui/core/Divider"
-import IconButton from "@material-ui/core/IconButton"
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
-import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import { List } from "@material-ui/core"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
@@ -13,19 +7,32 @@ import ExpandMore from "@material-ui/icons/ExpandMore"
 import ExpandLess from "@material-ui/icons/ExpandLess"
 import Collapse from "@material-ui/core/Collapse"
 import Settings from "@material-ui/icons/Settings"
-import InboxIcon from "@material-ui/icons/MoveToInbox"
-import DraftsIcon from "@material-ui/icons/Drafts"
-import SendIcon from "@material-ui/icons/Send"
 import { useState } from "react"
 import SubMenu from "./subMenu"
+import { Code, FiberManualRecord, LaptopMac, NavigateNext, Stars, ViewList } from "@material-ui/icons"
 
 interface mainMenuProps {
   elem: {key:string, value: {key:string, value:{key: string, value: string}[]}[]}
-  isFirst: boolean
+  slug?: string
 }
 
-export default function MainMenu({elem, isFirst}: mainMenuProps) {
-  const [menuToggle, setMenuToggle] = useState(isFirst);
+export default function MainMenu({elem, slug}: mainMenuProps) {
+  const [menuToggle, setMenuToggle] = useState(!!slug && elem.key === slug.split('/')[1]);
+
+  /**
+   * 메인아이콘 리턴 💔 하드코딩 💔
+   * @returns 메인 아이콘
+   */
+  const getMainIcon = (menuName: string):JSX.Element => {
+    let icon = <FiberManualRecord />
+    switch(menuName) {
+      case "mac": icon = <LaptopMac />; break
+      case "coding": icon = <Stars />; break
+      case "develop": icon = <Code />; break
+      case "etc": icon = <ViewList />; break
+    }
+    return icon
+  }
   return (
     <>
       <ListItem
@@ -35,11 +42,11 @@ export default function MainMenu({elem, isFirst}: mainMenuProps) {
           setMenuToggle(!menuToggle)
         }}
       >
-        <ListItemIcon>
-          <Settings />
+        <ListItemIcon style={{minWidth:'30px'}}>
+          {getMainIcon(elem.key)}
         </ListItemIcon>
         <ListItemText primary={elem.key} />
-        {menuToggle ? <ExpandMore /> : <ExpandLess />}
+        {menuToggle ? <ExpandMore /> : <NavigateNext />}
       </ListItem>
       <Collapse
         in={menuToggle}
@@ -47,10 +54,10 @@ export default function MainMenu({elem, isFirst}: mainMenuProps) {
         timeout="auto"
         unmountOnExit
       >
-        <List component="div" disablePadding>
+        <List component="div" disablePadding style={{paddingLeft: '35px'}}>
           {elem.value.map((e, i) => {
             return (
-              <SubMenu elem={e} isFirst={i===0}/>
+              <SubMenu elem={e} slug={slug}/>
             )
           })}
         </List>

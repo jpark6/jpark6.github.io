@@ -4,35 +4,30 @@ import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import ExpandMore from "@material-ui/icons/ExpandMore"
-import ExpandLess from "@material-ui/icons/ExpandLess"
 import Collapse from "@material-ui/core/Collapse"
-import InboxIcon from "@material-ui/icons/MoveToInbox"
-import SendIcon from "@material-ui/icons/Send"
 import { useState } from "react"
 import { navigate } from "gatsby";
+import { ListAlt, NavigateNext } from "@material-ui/icons"
 
 interface subMenuProps {
   elem: { key: string; value: { key: string; value: string }[] }
-  isFirst: boolean
+  slug?: string
 }
 
-export default function SubMenu({ elem, isFirst }: subMenuProps) {
-  const [subMenuToggle, setSubMenuToggle] = useState(isFirst)
-  /**
-   * 메뉴 클릭시 해당 게시글로 이동함.
-   * @param link
-   */
-   const goPost = (link: string) => {
-    navigate(link);
-  }
+export default function SubMenu({ elem, slug}: subMenuProps) {
+  const [subMenuToggle, setSubMenuToggle] = useState(!!slug && elem.key === slug.split('/')[2])
   return (
     <>
-      <ListItem button key={elem.key} onClick={() => setSubMenuToggle(!subMenuToggle)}>
-        <ListItemIcon>
-          <InboxIcon />
+      <ListItem
+        button
+        key={elem.key}
+        onClick={() => setSubMenuToggle(!subMenuToggle)}
+      >
+        <ListItemIcon style={{ minWidth: '30px'}}>
+          <ListAlt />
         </ListItemIcon>
         <ListItemText primary={elem.key} />
-        {subMenuToggle ? <ExpandMore /> : <ExpandLess />}
+        {subMenuToggle ? <ExpandMore /> : <NavigateNext />}
       </ListItem>
       <Collapse
         in={subMenuToggle}
@@ -40,12 +35,9 @@ export default function SubMenu({ elem, isFirst }: subMenuProps) {
         timeout="auto"
         unmountOnExit
       >
-        <List component="div" disablePadding>
+        <List component="div" disablePadding style={{paddingLeft: '30px'}}>
           {elem.value.map(e => (
             <ListItem button key={e.key}>
-              <ListItemIcon>
-                <SendIcon />
-              </ListItemIcon>
               <ListItemText primary={e.key} onClick={()=>navigate(e.value)}/>
             </ListItem>
           ))}

@@ -6,16 +6,6 @@ import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import ExpandLess from '@material-ui/icons/ExpandLess'
-import Collapse from '@material-ui/core/Collapse'
-import Settings from '@material-ui/icons/Settings'
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import MainMenu from './mainMenu'
 import {graphql, useStaticQuery} from 'gatsby'
 import { useState } from "react"
@@ -24,9 +14,10 @@ interface sideBarProps {
   open: boolean
   onHandleDrawerClose: ()=>void
   drawerWidth: number
+  slug?: string
 }
 
-export default function SideBar({open, onHandleDrawerClose, drawerWidth}: sideBarProps){
+export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: sideBarProps){
   const sideBarStyle = makeStyles((theme) => ({
     hide: {
       display: 'none',
@@ -57,7 +48,9 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth}: sideBa
 
   const data = useStaticQuery(graphql`
     query slugQuery {
-      allMdx {
+      allMdx (
+        sort: {order: ASC, fields: [frontmatter___mainOrder, frontmatter___subOrder, frontmatter___postOrder, frontmatter___date]}
+      ) {
         edges {
           node {
             frontmatter {
@@ -81,13 +74,13 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth}: sideBa
 
   const [menuToggle, setMenuToggle] = useState(true)
   /**
-   * path 경로 Map으로 변환
-   * /blog/[0002]etc/test/hello1    =>    Map([0002]etc:[test:[hello1, hello2]],
-   * /blog/[0002]etc/test/hello2              [0001]osx:[util:[alfred, ]],
-   * /blog/[0001]osx/util/alfred              [0000]develop:[gatsby:[1.info, 2.install, 3.deploy]]
-   * /blog/[0000]develop/gatsby/1.info
-   * /blog/[0000]develop/gatsby/2.install
-   * /blog/[0000]develop/gatsby/3.deploy
+   * path 경로 obj로 변환
+   * /etc/test/hello1    =>    {key:etc, value:[{key:test, value:[{key:hello1 value:/etc/test/hello1`} ,
+   * /etc/test/hello2                                            {key:hello2, value:/etc/test/hello2}]}] ... }
+   * /osx/util/alfred
+   * /develop/gatsby/1.info
+   * /develop/gatsby/2.install
+   * /develop/gatsby/3.deploy
    */
   data.allMdx.edges.forEach(
     (edge: edgeProps) => {
@@ -113,7 +106,6 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth}: sideBa
   const classes = sideBarStyle();
   const theme = useTheme();
 
-  // console.log('dirarr:',dir_arr);
   return (
       <Drawer
         className={classes.drawer}
@@ -131,7 +123,7 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth}: sideBa
         </div>
         <Divider />
         <List>
-        { dir_arr.map((e,i) => ( <MainMenu elem={e} isFirst={i===0}/> ))}
+        { dir_arr.map((e,i) => ( <MainMenu elem={e} slug={slug} /> ))}
         </List>
         <Divider />
       </Drawer>

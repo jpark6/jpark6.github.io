@@ -5,10 +5,9 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-  Typography
 } from "@material-ui/core";
-import {Link, navigate} from "gatsby";
-import {MDXRenderer} from "gatsby-plugin-mdx";
+import { navigate } from "gatsby";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 
 interface blogCardProps {
   node:{

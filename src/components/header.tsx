@@ -1,13 +1,11 @@
 import * as React from "react"
-// @ts-ignore
-import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
 interface headerProps {
   siteTitle: string
 }
 
-function Header({ siteTitle }: headerProps) {
+export default function Header({ siteTitle }: headerProps) {
   return (
     <header
       style={{
@@ -38,12 +36,3 @@ function Header({ siteTitle }: headerProps) {
   )
 }
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header

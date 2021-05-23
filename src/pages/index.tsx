@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import BlogCard from "../components/blogCard";
 import { Grid } from "@material-ui/core";
+import Spinner from "../components/spinner";
 
 interface indexPageProps {
   data: {
@@ -32,6 +33,7 @@ interface indexPageProps {
 export default function IndexPage({ data }: indexPageProps){
   return (
     <>
+      <Spinner />
       <Layout>
         <div className={'main-container'}>
           <h4>{data.allMdx.totalCount} Posts</h4>

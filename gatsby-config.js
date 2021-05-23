@@ -1,8 +1,8 @@
 module.exports = {
   pathPrefix: `/jpark6.github.io`,
   siteMetadata: {
-    title: `Gatsby Blog`,
-    description: `jpark gatsby blog`,
+    title: `jPark's Blog`,
+    description: `jPark's blog`,
     author: `jpark`,
   },
   plugins: [
