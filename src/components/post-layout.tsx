@@ -1,10 +1,10 @@
 import * as React from 'react'
 // @ts-ignore
-import Helmet from 'react-helmet'
 import Layout from './layout'
 import Seo from './seo'
-import {graphql} from "gatsby";
-import {MDXRenderer} from "gatsby-plugin-mdx";
+import {graphql} from "gatsby"
+import {MDXRenderer} from "gatsby-plugin-mdx"
+import Utterance from './utterance'
 
 interface postLayoutProps {
   path: string
@@ -28,6 +28,7 @@ export default function PostLayout({path, data}: postLayoutProps) {
         <time>Date: {data.mdx.frontmatter.date}</time>
         <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </article>
+      <Utterance repo='jpark6/jpark6.github.io' theme='github-light' />
     </Layout>
   )
 }
