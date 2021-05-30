@@ -403,6 +403,11 @@ div.beforeLoadPage
     position: absolute
     top: 0
     right: 0
+  .MuiTypography-body1
+    text-overflow: ellipsis
+    overflow: hidden
+    height: 24px
+    white-space: nowrap
 
   .MuiSvgIcon-root
     color: #FFF
@@ -410,15 +415,17 @@ button.showSideBarBtn
   width: 33px
   height: 30px
   position: fixed
-  bottom: 10px
-  left: 20px
-  background-color: #464646
+  bottom: 15px
+  left: 15px
+  background-color: #525252
   border-radius: 0.2em
   color: white
+  &:hover
+    background-color: #000
 main
   width: calc(100% - 320px)
   min-height: 100%
-  background-color: #efefef
+  background-color: #f8f8f8
   float: left
   padding: 10px
   overflow: auto
@@ -445,7 +452,8 @@ main
       padding: 0
       margin: 16px
       overflow: hidden
-
+.utterances
+  float: left
 aside
   float: right
   width: 300px
