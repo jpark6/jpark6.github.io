@@ -29,7 +29,6 @@ export default function PostLayout({path, data}: postLayoutProps) {
         <br />
         <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </article>
-      <Utterance repo='jpark6/jpark6.github.io' theme='github-light' />
     </Layout>
   )
 }

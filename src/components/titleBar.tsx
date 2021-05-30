@@ -8,12 +8,12 @@ import {AppBar} from "@material-ui/core";
 import {Link} from "gatsby";
 import { makeStyles } from "@material-ui/core/styles"
 
-interface titleBarProps {
+interface TitleBarProps {
   open: boolean
   onHandleDrawerOpen: any
   drawerWidth: number
 }
-export default function TitleBar({open, onHandleDrawerOpen, drawerWidth}: titleBarProps){
+export default function TitleBar({open, onHandleDrawerOpen, drawerWidth}: TitleBarProps){
   const titleBarStyle =  makeStyles((theme) => ({
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {

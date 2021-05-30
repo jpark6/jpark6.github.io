@@ -4,15 +4,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Sidebar from "./sideBar";
 import TitleBar from "./titleBar";
-import { useEffect, useState } from "react"
-import Aside from './aside';
+import { useState } from "react"
 
-interface layoutProps {
+interface LayoutProps {
   children: React.ReactNode
   slug?: string
 }
 
-export default function Layout({children, slug}: layoutProps) {
+export default function Layout({children, slug}: LayoutProps) {
   const [open, setOpen] = useState(true);
   const drawerWidth = 320;
   const useStyle = makeStyles((theme) => ({
@@ -51,9 +50,9 @@ export default function Layout({children, slug}: layoutProps) {
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
-      >{children}
+      >
+        {children}
       </main>
-      <Aside />
     </div>
   )
 }

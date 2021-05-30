@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { makeStyles, Theme, useTheme } from "@material-ui/core/styles"
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
@@ -8,17 +8,16 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import MainMenu from './mainMenu'
 import {graphql, useStaticQuery} from 'gatsby'
-import { useState } from "react"
 
-interface sideBarProps {
+interface SideBarProps {
   open: boolean
   onHandleDrawerClose: ()=>void
   drawerWidth: number
   slug?: string
 }
 
-export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: sideBarProps){
-  const sideBarStyle = makeStyles((theme) => ({
+export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: SideBarProps){
+  const sideBarStyle = makeStyles((theme: Theme) => ({
     hide: {
       display: 'none',
     },
@@ -62,7 +61,16 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: 
     }
   `)
 
-  const dir_arr:{key: string, value: {key: string, value: {key: string, value: string}[]}[]}[] = []
+  const dir_arr: {
+    key: string,
+    value: {
+      key: string,
+      value: {
+        key: string,
+        value: string
+      }[]
+    }[]
+  }[] = []
 
   interface edgeProps {
     node: {
@@ -72,15 +80,12 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: 
     }
   }
 
-  const [menuToggle, setMenuToggle] = useState(true)
+  // const [menuToggle, setMenuToggle] = useState(true)
   /**
    * path 경로 obj로 변환
    * /etc/test/hello1    =>    {key:etc, value:[{key:test, value:[{key:hello1 value:/etc/test/hello1`} ,
    * /etc/test/hello2                                            {key:hello2, value:/etc/test/hello2}]}] ... }
    * /osx/util/alfred
-   * /develop/gatsby/1.info
-   * /develop/gatsby/2.install
-   * /develop/gatsby/3.deploy
    */
   data.allMdx.edges.forEach(
     (edge: edgeProps) => {
@@ -123,7 +128,7 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: 
         </div>
         <Divider />
         <List>
-        { dir_arr.map((e,i) => ( <MainMenu key={e.key} elem={e} slug={slug} /> ))}
+        { dir_arr.map((e) => ( <MainMenu key={e.key} elem={e} slug={slug} /> ))}
         </List>
         <Divider />
       </Drawer>

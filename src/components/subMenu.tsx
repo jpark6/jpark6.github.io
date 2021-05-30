@@ -9,12 +9,12 @@ import { useState } from "react"
 import { navigate } from "gatsby";
 import { ListAlt, NavigateNext } from "@material-ui/icons"
 
-interface subMenuProps {
+interface SubMenuProps {
   elem: { key: string; value: { key: string; value: string }[] }
   slug?: string
 }
 
-export default function SubMenu({ elem, slug}: subMenuProps) {
+export default function SubMenu({ elem, slug}: SubMenuProps) {
   const [subMenuToggle, setSubMenuToggle] = useState(!!slug && elem.key === slug.split('/')[2])
   return (
     <>

@@ -9,7 +9,7 @@ import {
 import { navigate } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
-interface blogCardProps {
+interface BlogCardProps {
   node:{
     id: string
     body: string
@@ -28,7 +28,7 @@ interface blogCardProps {
  * @param {node} - mdx/md 파일 정보
  * @constructor
  */
-export default function BlogCard({ node }: blogCardProps){
+export default function BlogCard({ node }: BlogCardProps){
   const blog = node;
 
  /**

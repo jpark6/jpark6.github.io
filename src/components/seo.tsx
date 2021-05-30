@@ -9,19 +9,19 @@ import * as React from "react"
 // @ts-ignore
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-interface seoProps {
+interface SeoProps {
   title: string
   description?: string
   lang: string
   meta?: []
 }
-const defaultSeoProps: seoProps = {
+const defaultSeoProps: SeoProps = {
   title: 'Gatsby Mdx Page',
   description: 'Gatsby Mdx Page',
   lang: 'ko',
   meta: [],
 }
-export default function Seo({ description, lang, meta, title }: seoProps) {
+export default function Seo({ description, lang, meta, title }: SeoProps) {
   const { site } = useStaticQuery(
     graphql`
       query {
