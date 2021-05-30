@@ -4,9 +4,12 @@ html
   font: 112.5%/1.45em georgia, serif, sans-serif
   box-sizing: border-box
   overflow-y: scroll
+  height: 100%
 
 body
   margin: 0
+  height: 100%
+  background-color: #1f1f1f
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   color: hsla(0, 0%, 0%, 0.8)
@@ -356,17 +359,6 @@ pre
   tt
     &:before, &:after
       content: ""
-/* header 설정 */
-header
-  > div
-    margin: 0 auto
-    width: 100%
-    padding: 0.45rem 1.0875rem
-    > h1
-      margin: 0
-      > a
-        color: white
-        text-decoration: none
 
 /* page load 전 spinner */
 div.beforeLoadPage
@@ -379,15 +371,57 @@ div.beforeLoadPage
   align-items: center
   justify-content: center
   transition: all linear 1s
+
+/* height 100% 설정 */
+#___gatsby
+  height: 100%
+  #gatsby-focus-wrapper
+    height: 100%
+    > div
+      &:first-child
+        height: 100%
+
+/* 사이드바 */
 .sidebar
-  width: 300px
-  height: calc(100%)
+  width: 320px
+  min-height: 100%
   float: left
-  background-color: turquoise
+  background-color: #1f1f1f
+  color: white
+  transition: width linear .5s
+  position: relative
+  overflow: auto
+  .sidebar-title
+    height: 50px
+    display: flex
+    background-color: #1ac5be
+    justify-content: center
+    align-items: center
+    color: white
+    margin: 0
+  .hideSideBarBtn
+    position: absolute
+    top: 0
+    right: 0
+
+  .MuiSvgIcon-root
+    color: #FFF
+button.showSideBarBtn
+  width: 33px
+  height: 30px
+  position: fixed
+  bottom: 10px
+  left: 20px
+  background-color: #464646
+  border-radius: 0.2em
+  color: white
 main
-  width: calc(100% - 300px)
+  width: calc(100% - 320px)
+  min-height: 100%
+  background-color: #efefef
   float: left
-  margin-top: 60px
+  padding: 10px
+  overflow: auto
   ol
     padding-inline-start: 20px
   ul
@@ -412,19 +446,6 @@ main
       margin: 16px
       overflow: hidden
 
-/* sideBar menu */
-.MuiDrawer-root
-  .MuiDrawer-docked
-    width: 320px
-    .MuiDrawer-paperAnchorDockedLeft
-      width: 320px
-  .MuiListItem-gutters
-    padding-left: 10px
-    padding-right: 20px
-  .MuiTypography-body1
-    font-size: .75rem
-  .MuiSvgIcon-root
-    color: #777
 aside
   float: right
   width: 300px
@@ -433,6 +454,8 @@ aside
 @media only screen and (max-width: 480px)
   html
     font-size: 100%
+  .sidebar
+    width: 100%
 @media only screen and (max-width: 768px)
   main
     width: 100%

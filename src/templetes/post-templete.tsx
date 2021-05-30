@@ -25,10 +25,12 @@ export default function PostLayout({path, data}: postLayoutProps) {
     <Layout slug={data.mdx.frontmatter.slug}>
       <Seo title={data.mdx.frontmatter.title} lang='ko'></Seo>
       <article>
+        <h3>{data.mdx.frontmatter.title}</h3>
         <time>Date: {data.mdx.frontmatter.date}</time>
         <br />
         <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </article>
+      <Utterance repo='jpark6/jpark6.github.io' theme='github-light' />
     </Layout>
   )
 }

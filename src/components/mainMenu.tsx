@@ -19,7 +19,7 @@ export default function MainMenu({elem, slug}: MainMenuProps) {
 
   /**
    * 메인아이콘 리턴 💔 하드코딩 💔
-   * @returns 메인 아이콘
+   * @returns - 메인 아이콘
    */
   const getMainIcon = (menuName: string):JSX.Element => {
     let icon = <FiberManualRecord />

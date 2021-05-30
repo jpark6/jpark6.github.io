@@ -1,54 +1,36 @@
 import * as React from 'react'
-import { makeStyles, Theme, useTheme } from "@material-ui/core/styles"
-import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
-import IconButton from '@material-ui/core/IconButton'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import MainMenu from './mainMenu'
-import {graphql, useStaticQuery} from 'gatsby'
+import { graphql, Link, useStaticQuery } from "gatsby"
+import { useState } from "react"
+import { IconButton } from "@material-ui/core"
+import MenuIcon from "@material-ui/icons/Menu"
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 interface SideBarProps {
-  open: boolean
-  onHandleDrawerClose: ()=>void
-  drawerWidth: number
   slug?: string
 }
 
-export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: SideBarProps){
-  const sideBarStyle = makeStyles((theme: Theme) => ({
-    hide: {
-      display: 'none',
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-    },
-    drawerHeader: {
-      display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    },
-  }));
-
+export default function SideBar({slug}: SideBarProps){
+  const isMobile = (typeof window !== "undefined" && window.innerWidth < 500)
+  const [open, setOpen] = useState(!isMobile)
+  const handleDrawerOpen = () => setOpen(true)
+  const handleDrawerClose = () => setOpen(false)
   const data = useStaticQuery(graphql`
     query slugQuery {
-      allMdx (
-        sort: {order: ASC, fields: [frontmatter___mainOrder, frontmatter___subOrder, frontmatter___postOrder, frontmatter___date]}
+      site{
+        siteMetadata {
+          title
+        }
+      }
+      allMdx(
+        sort: {order: ASC, fields: [
+          frontmatter___mainOrder,
+          frontmatter___subOrder,
+          frontmatter___postOrder,
+          frontmatter___date
+        ]}
       ) {
         edges {
           node {
@@ -72,7 +54,7 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: 
     }[]
   }[] = []
 
-  interface edgeProps {
+  interface EdgeProps {
     node: {
       frontmatter: {
         slug: string
@@ -88,7 +70,7 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: 
    * /osx/util/alfred
    */
   data.allMdx.edges.forEach(
-    (edge: edgeProps) => {
+    (edge: EdgeProps) => {
       const slug_arr = edge.node.frontmatter.slug.split('/');
       let dir_idx = dir_arr.findIndex(e=> e.key === slug_arr[1]);
       if(dir_idx === -1) {
@@ -108,29 +90,36 @@ export default function SideBar({open, onHandleDrawerClose, drawerWidth, slug}: 
         }
       }
     });
-  const classes = sideBarStyle();
-  const theme = useTheme();
 
   return (
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
+    open ? (
+    <div
+      className="sidebar"
       >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={onHandleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-        { dir_arr.map((e) => ( <MainMenu key={e.key} elem={e} slug={slug} /> ))}
-        </List>
-        <Divider />
-      </Drawer>
+      <header>
+        <Link to="/"><h2 className="sidebar-title">{data.site.siteMetadata.title}</h2></Link>
+
+        <IconButton
+          aria-label="close drawer"
+          onClick={handleDrawerClose}
+          className="hideSideBarBtn"
+        >
+          <NavigateBeforeIcon />
+        </IconButton>
+      </header>
+      <List>
+      { dir_arr.map((e) => ( <MainMenu key={e.key} elem={e} slug={slug} /> ))}
+      </List>
+      <Divider />
+    </div>
+    ) : (
+      <IconButton
+        aria-label="open drawer"
+        onClick={handleDrawerOpen}
+        className="showSideBarBtn"
+      >
+        <MenuIcon />
+      </IconButton>
+    )
   )
 }

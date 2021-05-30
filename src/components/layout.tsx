@@ -1,9 +1,7 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Sidebar from "./sideBar";
-import TitleBar from "./titleBar";
 import { useState } from "react"
 
 interface LayoutProps {
@@ -14,43 +12,15 @@ interface LayoutProps {
 export default function Layout({children, slug}: LayoutProps) {
   const [open, setOpen] = useState(true);
   const drawerWidth = 320;
-  const useStyle = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(2),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginLeft: -drawerWidth,
-    },
-    contentShift: {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    },
-  }))
-
-  const classes = useStyle();
 
   const handleDrawerOpen = () => setOpen(true)
   const handleDrawerClose = () => setOpen(false)
 
   return (
-    <div className={classes.root}>
+    <div>
       <CssBaseline />
-      <TitleBar open={open} onHandleDrawerOpen={handleDrawerOpen} drawerWidth={drawerWidth} />
-      <Sidebar open={open} onHandleDrawerClose={handleDrawerClose} drawerWidth={drawerWidth} slug={slug} />
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
+      <Sidebar slug={slug} />
+      <main>
         {children}
       </main>
     </div>
