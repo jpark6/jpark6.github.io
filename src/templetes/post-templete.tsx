@@ -16,10 +16,10 @@ interface postLayoutProps {
         slug: string
       }
       body: string
+      excerpt: string
     }
   }
 }
-
 export default function PostLayout({path, data}: postLayoutProps) {
   return (
     <Layout slug={data.mdx.frontmatter.slug}>
@@ -44,6 +44,7 @@ export const query = graphql`
         date
         slug
       }
+      excerpt(pruneLength: 250)
     }
   }
 `

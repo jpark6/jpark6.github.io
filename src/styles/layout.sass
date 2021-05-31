@@ -403,6 +403,7 @@ div.beforeLoadPage
     top: 0
     right: 0
   .MuiTypography-body1
+    border-left: 3px solid #1f1f1f
     text-overflow: ellipsis
     overflow: hidden
     padding: 5px
@@ -429,12 +430,13 @@ div.beforeLoadPage
 button.showSideBarBtn
   width: 33px
   height: 30px
-  position: fixed
-  bottom: 15px
-  left: 15px
+  position: relative
   background-color: #525252
-  border-radius: 0.2em
-  color: white
+  border-radius: .2em
+  color: #fff
+  float: left
+  margin: 10px
+  z-index: 1
   &:hover
     background-color: #000
 main
@@ -462,11 +464,18 @@ main
       height: 250px
       border-top: 1px solid #e5e5e5
       border-bottom: 1px solid #e5e5e5
+      margin-bottom: 0
     > .MuiCardContent-root /* card content */
-      height: 150px
       padding: 0
       margin: 16px
       overflow: hidden
+      white-space: normal
+      line-height: 1.4
+      text-overflow: ellipsis
+      height: 4.2em
+      -webkit-line-clamp: 3
+      -webkit-box-orient: vertical
+      display: -webkit-box
 .utterances
   float: left
 aside
@@ -484,3 +493,9 @@ aside
     display: none
   .sidebar
     width: 100%
+  button.showSideBarBtn
+    position: fixed
+    bottom: 15px
+    left: 15px
+    margin: 0
+

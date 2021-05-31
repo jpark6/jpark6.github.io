@@ -19,7 +19,8 @@ interface indexPageProps {
               date: string,
               thumbnail: string,
             },
-            html: string
+            html: string,
+            excerpt: string,
           }
         }
       ],
@@ -68,6 +69,7 @@ query {
           thumbnail
         }
         body
+        excerpt
       }
     }
   }

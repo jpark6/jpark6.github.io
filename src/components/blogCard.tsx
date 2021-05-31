@@ -20,6 +20,7 @@ interface BlogCardProps {
       thumbnail: string
     }
     html: string
+    excerpt: string
   }
 }
 
@@ -29,7 +30,6 @@ interface BlogCardProps {
  * @constructor
  */
 export default function BlogCard({ node }: BlogCardProps){
-  const blog = node;
 
  /**
    * card 클릭시 해당 게시글로 이동함.
@@ -40,24 +40,24 @@ export default function BlogCard({ node }: BlogCardProps){
   }
 
   return (
-    <Card onClick={() => goPost(blog.frontmatter.slug)}>
+    <Card onClick={() => goPost(node.frontmatter.slug)}>
       <CardHeader
         avatar={
-          <Avatar aria-label="blog">
-            {blog.frontmatter.title.substr(0,1)}
+          <Avatar aria-label="node">
+            {node.frontmatter.title.substr(0,1)}
           </Avatar>
         }
-        title={blog.frontmatter.title}
-        subheader={blog.frontmatter.date}
+        title={node.frontmatter.title}
+        subheader={node.frontmatter.date}
       />
       <CardMedia
         component="img"
-        image={blog.frontmatter.thumbnail}
-        alt={blog.frontmatter.title}
-        title={blog.frontmatter.title}
+        image={node.frontmatter.thumbnail}
+        alt={node.frontmatter.title}
+        title={node.frontmatter.title}
       />
       <CardContent>
-        <MDXRenderer>{blog.body}</MDXRenderer>
+        {node.excerpt}
       </CardContent>
     </Card>
   )
