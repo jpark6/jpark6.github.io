@@ -56,7 +56,7 @@ export default function Seo({ description, lang, meta, title }: SeoProps) {
         defaultLang,
       }}
       title={defaultTitle}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={defaultTitle}
       meta={defaultMeta}
     />
   )

@@ -11,21 +11,33 @@ postOrder: 0
 import { StaticImage } from "gatsby-plugin-image"
 import gatsbyImg from "../../../images/gatsby-icon.png"
 
-- gatsby 설치
-  ``` shell
-  npm install -g gatsby-cli
-  ```
-- 신규 gatsby 프로젝트 생성
-  ``` shell
-  gatsby new jpark6.github.io
-  ```
+<img
+  src="https://ichi.pro/assets/images/max/724/1*SQdK1oLDvGecynYvKDKzzQ.png"
+  alt="gatsby logo"
+  width={500}
+/>
 
-- github에 repository 생성.
-  + gatsby 프로젝트 github 연결
+#### 정적 웹사이트 생성기
+- 개인 블로그를 만들어보기 위해 어떤 기술을 사용해야 할지 찾아보던 중,  
+  정적웹사이트 생성기인 gatsby를 알게 되었다.  
+- 정적 웹사이트 생성기(SSG, Static Site Generator)는 HTML, CSS, JavaScript로 구성된 정적 페이지 사이트를 만들어주는 도구이다.
+<br />
+<a
+  href="https://62che.com/blog/vuepress/%EC%A0%95%EC%A0%81-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EC%83%9D%EC%84%B1%EA%B8%B0%EB%9E%80.html"
+  target="_blank"
+>
+  [정적 웹사이트 생성기란?]
+</a>
+   블로그의 글을 읽으며 어느정도 개념을 파악할 수 있었다.
+- Jekyll, Hugo 등 여러가지 정적 웹사이트 생성기가 있지만 React 컴포넌트를 사용할 수 있는 Gatsby를 사용하기로 결정했다.
 
-    <img
-      src={gatsbyImg}
-      width={300}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
+#### 사용 기술
+- gatsby <a href="https://www.gatsbyjs.com/" target="gatsbyjs" > [Gatsby 사이트] </a>
+  : 정적 사이트 생성기
+- typescript <a href="https://www.typescriptlang.org/" target="typescript">[TypeScript 사이트]</a>
+  : 타입스크립트가 핫하다고 하여 TypeScript handbook을 한번 훑어봤고 적용해보려고 한다.
+- mdx <a href="https://mdxjs.com" target="mdx" > [mdx 사이트] </a> <a href="https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/" target="mdxplugin">[Gatsby Mdx 플러그인]</a>
+  : markdown에 React 컴포넌트를 사용할수 있는 플러그인이다.
+- github <a href="https://github.com/jpark6/jpark6.github.io" target="github" > [github Repo] </a>
+  : github-pages를 사용하여 사이트를 deploy하기 위한 repository
+- & GraphQL, Sass, Material UI, WebStorm, Vim(ideaVim 플러그인)

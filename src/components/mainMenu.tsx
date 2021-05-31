@@ -17,31 +17,15 @@ interface MainMenuProps {
 export default function MainMenu({elem, slug}: MainMenuProps) {
   const [menuToggle, setMenuToggle] = useState(!!slug && elem.key === slug.split('/')[1]);
 
-  /**
-   * 메인아이콘 리턴 💔 하드코딩 💔
-   * @returns - 메인 아이콘
-   */
-  const getMainIcon = (menuName: string):JSX.Element => {
-    let icon = <FiberManualRecord />
-    switch(menuName) {
-      case "mac": icon = <LaptopMac />; break
-      case "coding": icon = <Stars />; break
-      case "develop": icon = <Code />; break
-      case "etc": icon = <ViewList />; break
-    }
-    return icon
-  }
   return (
     <>
       <ListItem
         button
+        className={menuToggle ? 'selectedMenu': ''}
         onClick={() => {
           setMenuToggle(!menuToggle)
         }}
       >
-        <ListItemIcon style={{minWidth:'30px'}}>
-          {getMainIcon(elem.key)}
-        </ListItemIcon>
         <ListItemText primary={elem.key} />
         {menuToggle ? <ExpandMore /> : <NavigateNext />}
       </ListItem>

@@ -41,7 +41,6 @@ progress
 a
   background-color: transparent
   text-decoration: none
-  color: white
 
   &:active, &:hover
     outline-width: 0
@@ -387,7 +386,7 @@ div.beforeLoadPage
   min-height: 100%
   float: left
   background-color: #1f1f1f
-  color: white
+  color: #FFF
   transition: width linear .5s
   position: relative
   overflow: auto
@@ -406,11 +405,27 @@ div.beforeLoadPage
   .MuiTypography-body1
     text-overflow: ellipsis
     overflow: hidden
-    height: 24px
+    padding: 5px
     white-space: nowrap
-
+    font-size: .8rem
   .MuiSvgIcon-root
     color: #FFF
+  .MuiListItem-gutters
+    padding-left: 0
+  /* 선택된 메뉴 강조 */
+  .selectedMenu
+    .MuiTypography-body1
+      border-left: 3px solid #1ac5be
+      color: #1ac5be
+      font-weight: 600
+    .MuiSvgIcon-root
+      color: #1ac5be
+  .selectedSubMenu
+    .MuiTypography-body1
+      color: #1ac5be
+      font-weight: 600
+    .MuiSvgIcon-root
+      color: #1ac5be
 button.showSideBarBtn
   width: 33px
   height: 30px
@@ -424,7 +439,7 @@ button.showSideBarBtn
     background-color: #000
 main
   width: calc(100% - 320px)
-  min-height: 100%
+  height: 100%
   background-color: #f8f8f8
   float: left
   padding: 10px
@@ -462,10 +477,10 @@ aside
 @media only screen and (max-width: 480px)
   html
     font-size: 100%
-  .sidebar
-    width: 100%
 @media only screen and (max-width: 768px)
   main
     width: 100%
   aside
     display: none
+  .sidebar
+    width: 100%
