@@ -3,20 +3,18 @@ import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import MainMenu from './mainMenu'
 import { graphql, Link, useStaticQuery } from "gatsby"
-import { useState } from "react"
 import { IconButton } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 interface SideBarProps {
+  open: boolean
   slug?: string
+  handleDrawerOpen: () => void
+  handleDrawerClose: () => void
 }
 
-export default function SideBar({slug}: SideBarProps){
-  const isMobile = (typeof window !== "undefined" && window.innerWidth < 500)
-  const [open, setOpen] = useState(!isMobile)
-  const handleDrawerOpen = () => setOpen(true)
-  const handleDrawerClose = () => setOpen(false)
+export default function SideBar({open, slug, handleDrawerOpen, handleDrawerClose}: SideBarProps){
   const data = useStaticQuery(graphql`
     query slugQuery {
       site{
@@ -27,7 +25,6 @@ export default function SideBar({slug}: SideBarProps){
       allMdx(
         sort: {order: ASC, fields: [
           frontmatter___mainOrder,
-          frontmatter___subOrder,
           frontmatter___postOrder,
           frontmatter___date
         ]}
@@ -47,10 +44,7 @@ export default function SideBar({slug}: SideBarProps){
     key: string,
     value: {
       key: string,
-      value: {
-        key: string,
-        value: string
-      }[]
+      value: string
     }[]
   }[] = []
 
@@ -64,30 +58,22 @@ export default function SideBar({slug}: SideBarProps){
 
   // const [menuToggle, setMenuToggle] = useState(true)
   /**
-   * path 경로 obj로 변환
-   * /etc/test/hello1    =>    {key:etc, value:[{key:test, value:[{key:hello1 value:/etc/test/hello1`} ,
-   * /etc/test/hello2                                            {key:hello2, value:/etc/test/hello2}]}] ... }
-   * /osx/util/alfred
+   * path 경로 object로 변환
+   * /etc/hello1    =>    { key:etc, value:[{key:hello1 value:/etc/test/hello1`} ,
+   * /etc/hello2                            {key:hello2, value:/etc/test/hello2}], 
+   * /mac/alfred            key:mac, value:[{key:alfref, value:/mac/alfred}] ... }
    */
   data.allMdx.edges.forEach(
     (edge: EdgeProps) => {
       const slug_arr = edge.node.frontmatter.slug.split('/');
-      let dir_idx = dir_arr.findIndex(e=> e.key === slug_arr[1]);
+      let dir_idx = dir_arr.findIndex(e => e.key === slug_arr[1]);
       if(dir_idx === -1) {
-        const depth3_obj = {key: slug_arr[3], value: edge.node.frontmatter.slug};
-        const depth2_obj = {key: slug_arr[2], value: [depth3_obj,]};
+        const depth2_obj = {key: slug_arr[2], value: edge.node.frontmatter.slug};
         const depth1_obj = {key: slug_arr[1], value: [depth2_obj,]}
         dir_arr.push(depth1_obj)
       } else {
-        let dir2_idx = dir_arr[dir_idx].value.findIndex(e=>e.key === slug_arr[2]);
-        if(dir2_idx === -1) {
-          const depth3_obj = {key: slug_arr[3], value: edge.node.frontmatter.slug};
-          const depth2_obj = {key: slug_arr[2], value: [depth3_obj]};
-          dir_arr[dir_idx].value.push(depth2_obj);
-        } else {
-          const depth3_obj = {key: slug_arr[3], value: edge.node.frontmatter.slug};
-          dir_arr[dir_idx].value[dir2_idx].value.push(depth3_obj);
-        }
+        const depth2_obj = {key: slug_arr[2], value: edge.node.frontmatter.slug};
+        dir_arr[dir_idx].value.push(depth2_obj);
       }
     });
 

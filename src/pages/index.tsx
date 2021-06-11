@@ -5,7 +5,7 @@ import BlogCard from "../components/blogCard";
 import { Grid } from "@material-ui/core";
 import Spinner from "../components/spinner";
 
-interface indexPageProps {
+interface IndexPageProps {
   data: {
     allMdx: {
       edges: [
@@ -31,26 +31,23 @@ interface indexPageProps {
 /**
  * @constructor
  */
-export default function IndexPage({ data }: indexPageProps){
+export default function IndexPage({ data }: IndexPageProps){
 
   return (
-    <>
-      <Spinner />
-      <Layout>
-        <div className={'main-container'}>
-          <h4>{data.allMdx.totalCount} Posts</h4>
-          <div className="cardContainer">
-            <Grid container spacing={1}>
-              {data.allMdx.edges.map(( { node} ) => (
-                <Grid item key={node.id} xs={12} sm={6} md={6} lg={4} xl={4}>
-                  <BlogCard node={node}/>
-                </Grid>
-              ))}
-            </Grid>
-          </div>
+    <Layout>
+      <div className={'main-container'}>
+        <h4>{data.allMdx.totalCount} Posts</h4>
+        <div className="cardContainer">
+          <Grid container spacing={1}>
+            {data.allMdx.edges.map(( { node} ) => (
+              <Grid item key={node.id} xs={12} sm={6} md={6} lg={4} xl={4}>
+                <BlogCard node={node}/>
+              </Grid>
+            ))}
+          </Grid>
         </div>
-      </Layout>
-    </>
+      </div>
+    </Layout>
   )
 }
 export const query = graphql`

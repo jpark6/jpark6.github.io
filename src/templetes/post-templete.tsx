@@ -4,9 +4,10 @@ import Layout from '../components/layout'
 import Seo from '../components/seo'
 import {graphql} from "gatsby"
 import {MDXRenderer} from "gatsby-plugin-mdx"
+import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
 import Utterance from '../components/utterance'
 
-interface postLayoutProps {
+interface PostLayoutProps {
   path: string
   data: {
     mdx: {
@@ -20,10 +21,11 @@ interface postLayoutProps {
     }
   }
 }
-export default function PostLayout({path, data}: postLayoutProps) {
+export default function PostLayout({path, data}: PostLayoutProps) {
+  deckDeckGoHighlightElement();
   return (
     <Layout slug={data.mdx.frontmatter.slug}>
-      <Seo title={data.mdx.frontmatter.title} lang='ko'></Seo>
+      <Seo title={data.mdx.frontmatter.title} lang="ko"/>
       <article>
         <h3>{data.mdx.frontmatter.title}</h3>
         <time>Date: {data.mdx.frontmatter.date}</time>

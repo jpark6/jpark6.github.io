@@ -11,8 +11,8 @@ export default function Spinner(){
         // @ts-ignore
         beforeLoadPage.current.style.opacity = '0'
       }
-      setTimeout(() => setLoaded(true), 1000)
-    },1000)
+      setTimeout(() => setLoaded(true), 10000)
+    },3000)
   })
 
   return (

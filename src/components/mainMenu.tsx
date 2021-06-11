@@ -10,7 +10,7 @@ import SubMenu from "./subMenu"
 import { Code, FiberManualRecord, LaptopMac, NavigateNext, Stars, ViewList } from "@material-ui/icons"
 
 interface MainMenuProps {
-  elem: {key:string, value: {key:string, value:{key: string, value: string}[]}[]}
+  elem: {key:string, value: {key:string, value:string}[]}
   slug?: string
 }
 

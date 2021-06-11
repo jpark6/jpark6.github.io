@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Sidebar from "./sideBar";
 import { useState } from "react"
@@ -10,17 +9,23 @@ interface LayoutProps {
 }
 
 export default function Layout({children, slug}: LayoutProps) {
-  const [open, setOpen] = useState(true);
-  const drawerWidth = 320;
-
+  const isMobile = (typeof window !== "undefined" && window.innerWidth < 500)
+  const [open, setOpen] = useState(!isMobile)
   const handleDrawerOpen = () => setOpen(true)
   const handleDrawerClose = () => setOpen(false)
 
   return (
     <div>
       <CssBaseline />
-      <Sidebar slug={slug} />
-      <main>
+      <Sidebar
+        open={open}
+        slug={slug}
+        handleDrawerOpen={handleDrawerOpen}
+        handleDrawerClose={handleDrawerClose}
+      />
+      <main
+        className={ open ? "sidebarOpen" : "sidebarClose"}
+      >
         {children}
       </main>
     </div>
