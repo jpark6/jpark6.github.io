@@ -1,6 +1,7 @@
-import * as React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Sidebar from "./sideBar";
+import * as React from 'react'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Sidebar from "./sideBar"
+import SearchBar from "./searchBar"
 import { useState } from "react"
 
 interface LayoutProps {
@@ -26,6 +27,7 @@ export default function Layout({children, slug}: LayoutProps) {
       <main
         className={ open ? "sidebarOpen" : "sidebarClose"}
       >
+        <SearchBar />
         {children}
       </main>
     </div>

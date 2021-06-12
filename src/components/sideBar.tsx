@@ -5,7 +5,8 @@ import MainMenu from './mainMenu'
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { IconButton } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faAngleLeft} from "@fortawesome/free-solid-svg-icons"
 
 interface SideBarProps {
   open: boolean
@@ -65,17 +66,16 @@ export default function SideBar({open, slug, handleDrawerOpen, handleDrawerClose
    */
   data.allMdx.edges.forEach(
     (edge: EdgeProps) => {
-      const slug_arr = edge.node.frontmatter.slug.split('/');
-      let dir_idx = dir_arr.findIndex(e => e.key === slug_arr[1]);
+      const slug_arr = edge.node.frontmatter.slug.split('/')
+      let dir_idx = dir_arr.findIndex(e => e.key === slug_arr[1])
+      const depth2_obj = {key: slug_arr[2], value: edge.node.frontmatter.slug}
       if(dir_idx === -1) {
-        const depth2_obj = {key: slug_arr[2], value: edge.node.frontmatter.slug};
         const depth1_obj = {key: slug_arr[1], value: [depth2_obj,]}
         dir_arr.push(depth1_obj)
       } else {
-        const depth2_obj = {key: slug_arr[2], value: edge.node.frontmatter.slug};
         dir_arr[dir_idx].value.push(depth2_obj);
       }
-    });
+    })
 
   return (
     open ? (
@@ -84,13 +84,12 @@ export default function SideBar({open, slug, handleDrawerOpen, handleDrawerClose
       >
       <header>
         <Link to="/"><h2 className="sidebar-title">{data.site.siteMetadata.title}</h2></Link>
-
         <IconButton
           aria-label="close drawer"
           onClick={handleDrawerClose}
           className="hideSideBarBtn"
         >
-          <NavigateBeforeIcon />
+          <FontAwesomeIcon icon={faAngleLeft} />
         </IconButton>
       </header>
       <List>

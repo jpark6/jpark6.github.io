@@ -22,12 +22,12 @@ interface PostLayoutProps {
   }
 }
 export default function PostLayout({path, data}: PostLayoutProps) {
-  deckDeckGoHighlightElement();
+  deckDeckGoHighlightElement().then(r => console.log("result: ", r))
   return (
     <Layout slug={data.mdx.frontmatter.slug}>
       <Seo title={data.mdx.frontmatter.title} lang="ko"/>
       <article>
-        <h3>{data.mdx.frontmatter.title}</h3>
+        <h1>{data.mdx.frontmatter.title}</h1>
         <time>Date: {data.mdx.frontmatter.date}</time>
         <br />
         <MDXRenderer>{data.mdx.body}</MDXRenderer>

@@ -1,13 +1,12 @@
 import * as React from "react"
+import { useState } from "react"
 import { List } from "@material-ui/core"
 import ListItem from "@material-ui/core/ListItem"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
-import ExpandMore from "@material-ui/icons/ExpandMore"
 import Collapse from "@material-ui/core/Collapse"
-import { useState } from "react"
 import SubMenu from "./subMenu"
-import { Code, FiberManualRecord, LaptopMac, NavigateNext, Stars, ViewList } from "@material-ui/icons"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faChevronRight, faChevronDown} from "@fortawesome/free-solid-svg-icons"
 
 interface MainMenuProps {
   elem: {key:string, value: {key:string, value:string}[]}
@@ -27,7 +26,7 @@ export default function MainMenu({elem, slug}: MainMenuProps) {
         }}
       >
         <ListItemText primary={elem.key} />
-        {menuToggle ? <ExpandMore /> : <NavigateNext />}
+        {menuToggle ? <FontAwesomeIcon icon={faChevronDown} /> : <FontAwesomeIcon icon={faChevronRight} />}
       </ListItem>
       <Collapse
         in={menuToggle}
