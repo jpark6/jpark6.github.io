@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: `/jpark6.github.io`,
   siteMetadata: {
-    title: `jBlog`,
+    title: `jPark's Blog`,
     description: `jPark's blog`,
     author: `jpark`,
     siteUrl: "https://jpark6.github.io",

@@ -12,7 +12,6 @@ html
 body
   margin: 0
   height: 100%
-  background-color: #1f1f1f
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   color: hsla(0, 0%, 0%, 0.8)
@@ -446,7 +445,7 @@ div.beforeLoadPage
   height: 40px
   input
     border: 1px solid #CCC
-    max-width: 500px
+    max-width: 700px
     width: calc(100% - 60px)
     height: 30px
     float: left
@@ -487,7 +486,7 @@ main
   height: 100%
   background-color: #f8f8f8
   float: left
-  padding: 10px 10px 10px 30px
+  padding: 10px 10px 10px 50px
   overflow: auto
   &.sidebarClose
     width: 100%
@@ -548,7 +547,9 @@ aside
     bottom: 15px
     left: 15px
     margin: 0
-@media only screen and (max-width: 1000px)
+@media only screen and (max-width: 1200px)
+  main
+    padding-left: 30px
   .sidebar 
     button.hideSideBarBtn
       visibility: visible
