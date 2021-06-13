@@ -7,11 +7,7 @@ export default function Spinner(){
   const beforeLoadPage = useRef() as React.MutableRefObject<HTMLDivElement>;
   useEffect(() => {
     setTimeout(() => {
-      if(beforeLoadPage.current) {
-        // @ts-ignore
-        // beforeLoadPage.current.style.opacity = '0'
-      }
-      setTimeout(() => setLoaded(true), 1000)
+      setLoaded(true)
     },1000)
   })
 

@@ -4,6 +4,7 @@ import Layout from "../components/layout";
 import BlogCard from "../components/blogCard";
 import { Grid } from "@material-ui/core";
 import Spinner from "../components/spinner";
+import Seo from "../components/seo"
 
 interface IndexPageProps {
   data: {
@@ -37,6 +38,7 @@ export default function IndexPage({ data }: IndexPageProps){
     <>
       <Spinner />
       <Layout>
+        <Seo title="jPark's Blog" lang="ko"/>
         <div className={'main-container'}>
           <h4>{data.allMdx.totalCount} Posts</h4>
           <div className="cardContainer">

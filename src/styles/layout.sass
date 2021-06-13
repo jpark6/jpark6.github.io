@@ -465,6 +465,7 @@ div.beforeLoadPage
     border-radius: .2em
     color: #777
     cursor: pointer
+    padding: 0
     svg
       width: 20px
       height: 20px
@@ -520,7 +521,7 @@ main
       line-height: 1.4
       text-overflow: ellipsis
       height: 4.2em
-      -webkit-line-clamp: 3
+      -webkit-line-clamp: 31
       -webkit-box-orient: vertical
       display: -webkit-box
 .utterances
@@ -558,8 +559,10 @@ aside
   .sidebar
     width: 100%
   main
+    padding: 10px
     &.sidebarOpen
       width: 100%
+      padding: 10px
     &.sidebarClose
       width: 100%
       padding: 10px
