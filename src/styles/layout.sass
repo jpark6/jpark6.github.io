@@ -335,7 +335,7 @@ tt, code
   background-color: hsla(0, 0%, 0%, 0.04)
   border-radius: 3px
   font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono", "Liberation Mono", Menlo, Courier, monospace
-  padding: 0.2em 0
+  padding: 0.2em
 
 pre code
   background: none
@@ -344,7 +344,6 @@ pre code
 code
   &:before, &:after
     letter-spacing: -0.2em
-    content: " "
 
 tt
   &:before, &:after
@@ -485,8 +484,7 @@ button.showSideBarBtn
 main
   height: 100%
   background-color: #f8f8f8
-  float: left
-  padding: 10px 10px 10px 50px
+  padding: 10px 10px 10px 30px
   overflow: auto
   &.sidebarClose
     width: 100%
@@ -494,7 +492,7 @@ main
   &.sidebarOpen
     width: calc(100% - 320px)
   article
-    max-width: 760px
+    width: calc(100% - 320px)
   ol
     padding-inline-start: 20px
   ul
@@ -528,10 +526,32 @@ main
 .utterances
   float: left
 aside
+  position: fixed
+  top: 50px
+  right: 20px
+  /* left: 1280px */
   float: right
   width: 300px
-  height: 100vh
-  margin-top: 70px
+  border-left: 3px solid #1ac5be
+  ul
+    margin-left: 10px
+    margin-bottom: 0
+    list-style: none
+    padding: 0
+    li
+      &:last-child
+        margin-bottom: 0
+    a
+      color: #777777
+      font-size: 14px
+      cursor: pointer
+      transition: all linear .3s
+      &.selected
+        color: #1ac5be
+        text-decoration: underline
+        font-weight: 600
+      &:hover
+        color: #1ac5be
 @media only screen and (max-width: 480px)
   html
     font-size: 100%
@@ -548,9 +568,12 @@ aside
     left: 15px
     margin: 0
 @media only screen and (max-width: 1200px)
-  main
-    padding-left: 30px
   .sidebar 
     button.hideSideBarBtn
       visibility: visible
+  main
+    article
+      width: 100%
+    aside
+      display: none
     

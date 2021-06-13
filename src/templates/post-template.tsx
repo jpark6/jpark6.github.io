@@ -6,7 +6,14 @@ import {graphql} from "gatsby"
 import {MDXRenderer} from "gatsby-plugin-mdx"
 import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
 import Utterance from '../components/utterance'
+import Toc from "../components/toc"
+import { formatDate } from "../script/common"
 
+interface Item {
+  url: string
+  title: string
+  items?: Item[]
+}
 interface PostLayoutProps {
   path: string
   data: {
@@ -18,20 +25,23 @@ interface PostLayoutProps {
       }
       body: string
       excerpt: string
+      tableOfContents: {items: Item[] | undefined}
     }
   }
 }
 export default function PostLayout({path, data}: PostLayoutProps) {
-  deckDeckGoHighlightElement().then(r => console.log("result: ", r))
+  deckDeckGoHighlightElement().then(r => void(0))
   return (
     <Layout slug={data.mdx.frontmatter.slug}>
       <Seo title={data.mdx.frontmatter.title} lang="ko"/>
       <article>
         <h1>{data.mdx.frontmatter.title}</h1>
-        <time>Date: {data.mdx.frontmatter.date}</time>
+        <time>Date: {formatDate(data.mdx.frontmatter.date)}</time>
+        <br />
         <br />
         <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </article>
+      <Toc toc={data.mdx.tableOfContents}/>
       <Utterance repo='jpark6/jpark6.github.io' theme='github-light' />
     </Layout>
   )
@@ -47,6 +57,7 @@ export const query = graphql`
         slug
       }
       excerpt(pruneLength: 250)
+      tableOfContents
     }
   }
 `

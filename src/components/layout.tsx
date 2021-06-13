@@ -14,6 +14,36 @@ export default function Layout({children, slug}: LayoutProps) {
   const [open, setOpen] = useState(!isMobile)
   const handleDrawerOpen = () => setOpen(true)
   const handleDrawerClose = () => setOpen(false)
+  
+  const scrollHandler = () => {
+    const toc = document.getElementsByTagName("aside")
+    if(!toc || toc.length < 0 || !toc[0] ||  !toc[0].style || toc[0].style.visibility === "hidden") {
+      return;
+    }
+    
+    const anchor_holder = document.getElementsByClassName("anchor-header")
+    if(!anchor_holder || anchor_holder.length < 0) {
+      return;
+    }
+    let selected_anchor = null
+    for(let a of Array.from(anchor_holder)){
+      if(a.getBoundingClientRect().top > -20) {
+        selected_anchor = a.getAttribute("href")
+        break
+      }
+    }
+    if(!selected_anchor) {
+      selected_anchor = Array.from(anchor_holder)[anchor_holder.length -1].getAttribute("href")
+    }
+    document.querySelectorAll("aside a.selected").forEach(a => {
+      a.classList.remove("selected");
+    })
+    console.log(selected_anchor)
+    if(selected_anchor) {
+      const toc_selected = document.querySelector("aside a[href='"+ decodeURIComponent(selected_anchor) +"']")
+      toc_selected && toc_selected.classList.add("selected")
+    }
+  }
 
   return (
     <div>
@@ -26,6 +56,8 @@ export default function Layout({children, slug}: LayoutProps) {
       />
       <main
         className={ open ? "sidebarOpen" : "sidebarClose"}
+        onScroll={scrollHandler}
+        onLoad={scrollHandler}
       >
         <SearchBar />
         {children}
