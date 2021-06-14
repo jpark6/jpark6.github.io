@@ -48,7 +48,7 @@ export default function Seo({ description, lang, meta, title }: SeoProps) {
     { name: `twitter:creator`, content: site.siteMetadata?.author || ``, },
     { name: `twitter:title`, content: defaultTitle, },
     { name: `twitter:description`, content: defaultDescription, },
-    { name: `google-site-verification`, content:`muWWNyaR7u80aOFhAP0bqoAhEFhZf8TuHRcZpkl1CAo`}
+    { name: `google-site-verification`, content:`wK07kbJY6F1wtSxRl_26HaanLBjHIHB1xvHm9thhTZ0`}
   ].concat(meta||[]);
 
   return (
