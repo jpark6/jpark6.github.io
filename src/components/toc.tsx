@@ -10,14 +10,6 @@ interface TocProps {
   }
 }
 
-/**
- * 현재 url상의 주소의 #뒤의 내용과 toc item.title 비교
- * 같을 경우 true 반환
- * @param title
- */
-const scrollHandler = () => {
-}
-
 export default function Toc({toc}:TocProps) {
   return (
     <aside>

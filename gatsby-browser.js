@@ -4,4 +4,3 @@
  */
 
 require("/src/styles/layout.sass")
-require("/src/styles/post.sass")

@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { goPost, formatDate } from "../script/common"
+import { Dispatch, SetStateAction } from "react"
 
 interface SearchBoxProps {
   filteredPosts: { 
@@ -16,9 +17,10 @@ interface SearchBoxProps {
     }
   }[]
   query: string
+  setQuery: Dispatch<SetStateAction<string>>
 }
 
-export default function SearchBox({filteredPosts, query}: SearchBoxProps) {
+export default function SearchBox({filteredPosts, query, setQuery}: SearchBoxProps) {
   const hasSearchResults = filteredPosts && query !== ""
   const posts = hasSearchResults ? filteredPosts : [];
   return (
@@ -34,7 +36,7 @@ export default function SearchBox({filteredPosts, query}: SearchBoxProps) {
 
           return (
             <div key={slug} className="searchArticle">
-              <h2 className="searchTitle" onClick={()=>goPost(slug)}>{title}</h2>
+              <h2 className="searchTitle" onClick={()=>{goPost(slug); setQuery("")}}>{title}</h2>
               <p className="searchDate">{formatDate(date)}</p>
               <div className="searchContext">
                 {excerpt}

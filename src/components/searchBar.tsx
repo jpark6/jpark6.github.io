@@ -52,11 +52,13 @@ export default function searchBar() {
     }
     const filterPost = posts.filter((post:PostProps) => {
       const title = post.node.frontmatter.title
-      const excerpt = post.node.excerpt
+      // const excerpt = post.node.excerpt
       return (
         (title && title.toLowerCase().includes(query))
+        /* 본문내용 찾기  
         ||
         (excerpt && excerpt.toLowerCase().includes(query))
+        */
       )
     })
     setQuery(query)
@@ -68,6 +70,7 @@ export default function searchBar() {
         type="text"
         placeholder="게시글 검색"
         onChange={handleSearchInput}
+        value={query}
       />
       <button type="button">
         <FontAwesomeIcon
@@ -88,7 +91,7 @@ export default function searchBar() {
           size="2x"
         />
       </button>
-      <SearchBox filteredPosts={filteredPosts} query={query} />
+      <SearchBox filteredPosts={filteredPosts} query={query} setQuery={setQuery}/>
     </div>
   )
 }

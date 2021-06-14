@@ -265,8 +265,9 @@ table
   width: 100%
 
 blockquote
-  padding: 0
-  margin: 0 1.45rem 1.45rem
+  margin: 0 0 1.45rem
+  padding: .3rem .7rem
+  border-left: 3px solid #1ac5be
 
 form, noscript, iframe, address
   padding: 0
@@ -453,6 +454,12 @@ div.beforeLoadPage
     background-color: transparent
     border-radius: 0
     padding: 0 10px
+    font-weight: 600
+    &:focus
+      outline: none
+      box-shadow: rgba(98, 198, 198, 0.52) 0 5px 8px 1px
+      + button
+        color: #1ac5be
     + button
       margin-left: -30px
   button
@@ -472,15 +479,15 @@ div.beforeLoadPage
       height: 20px
 /* 검색 결과 */
 .searchBox 
-  position: fixed
+  position: absolute 
   z-index: 3
   background-color: #f8f8f8
-  width: calc(100% - 20px)
-  max-width: 760px
-  max-height: calc(100% - 100px)
+  width: calc(100% - 60px)
+  max-width: 700px
+  max-height: 425px
   overflow-y: auto
-  box-shadow: rgba(64, 60, 67, 0.24) 0px 2px 8px 1px
-  border-top-right-radius: .5rem
+  box-shadow: rgba(87, 85, 89, 0.52) 0 5px 15px 1px
+  border-left: 3px solid #1ac5be
   border-bottom-right-radius: .5rem
   .searchArticle
     padding: 10px
@@ -530,6 +537,18 @@ main
   article
     width: calc(100% - 320px)
     max-width: 760px
+    h1
+      font-size: 1.8rem
+    h2
+      font-size: 1.6rem
+    h3
+      font-size: 1.4rem
+    h4
+      font-size: 1.1rem
+    h5
+      font-size: .95rem
+    h6
+      font-size: .8rem
   ol
     padding-inline-start: 20px
   ul
@@ -566,7 +585,6 @@ aside
   position: fixed
   top: 50px
   right: 20px
-  /* left: 1280px */
   float: right
   width: 300px
   border-left: 3px solid #1ac5be
