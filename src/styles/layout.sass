@@ -451,19 +451,16 @@ div.beforeLoadPage
     float: left
     box-sizing: border-box
     background-color: transparent
+    border-radius: 0
     padding: 0 10px
     + button
-      width: 28px
-      height: 28px
       margin-left: -30px
-      margin-top: 1px
-      float: left
   button
     width: 30px
     height: 30px
     border: none
     background-color: transparent
-    border-radius: .2em
+    border-radius: 0
     color: #727273
     cursor: pointer
     padding: 0
@@ -473,6 +470,40 @@ div.beforeLoadPage
     svg
       width: 20px
       height: 20px
+/* 검색 결과 */
+.searchBox 
+  position: fixed
+  z-index: 3
+  background-color: #f8f8f8
+  width: calc(100% - 20px)
+  max-width: 760px
+  height: calc(100% - 100px)
+  overflow-y: auto
+  box-shadow: rgba(64, 60, 67, 0.24) 0px 2px 8px 1px
+  border-top-right-radius: .5rem
+  border-bottom-right-radius: .5rem
+  .searchArticle
+    padding: 10px
+    &:not(&:last-child)
+      border-bottom: 1px solid #ccc
+    h2
+      font-size: 1.1rem
+      margin-bottom: 5px
+      cursor: pointer
+      &:hover
+        color: #1ac5be
+    p.searchDate
+      margin-bottom: 5px
+    div.searchContext
+      overflow: hidden
+      white-space: normal
+      line-height: 1.4
+      text-overflow: ellipsis
+      height: 4.2em
+      -webkit-line-clamp: 31
+      -webkit-box-orient: vertical
+      display: -webkit-box
+
 button.showSideBarBtn
   width: 33px
   height: 30px
