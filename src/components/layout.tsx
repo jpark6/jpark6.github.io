@@ -17,7 +17,7 @@ export default function Layout({children, slug}: LayoutProps) {
   
   const scrollHandler = () => {
     const toc = document.getElementsByTagName("aside")
-    if(!toc || toc.length < 0 || !toc[0] ||  !toc[0].style || toc[0].style.visibility === "hidden") {
+    if(!toc || toc.length < 0 || !toc[0] ||  !toc[0].style || toc[0].offsetWidth === 0) {
       return;
     }
     
@@ -27,7 +27,9 @@ export default function Layout({children, slug}: LayoutProps) {
     }
     let selected_anchor = null
     for(let a of Array.from(anchor_holder)){
-      if(a.getBoundingClientRect().top > -20) {
+      if(a.getBoundingClientRect().top > -30) {
+        console.log(a.getAttribute("href") ,".top: ", a.getBoundingClientRect().top)
+        console.log("body.top: ", document.body.scrollTop)
         selected_anchor = a.getAttribute("href")
         break
       }
@@ -43,6 +45,8 @@ export default function Layout({children, slug}: LayoutProps) {
       toc_selected && toc_selected.classList.add("selected")
     }
   }
+  
+  document.body.addEventListener("scroll", scrollHandler)
 
   return (
     <div>
@@ -55,7 +59,6 @@ export default function Layout({children, slug}: LayoutProps) {
       />
       <main
         className={ open ? "sidebarOpen" : "sidebarClose"}
-        onScroll={scrollHandler}
         onLoad={scrollHandler}
       >
         <SearchBar />
