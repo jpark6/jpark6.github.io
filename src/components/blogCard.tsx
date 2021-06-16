@@ -32,11 +32,6 @@ export default function BlogCard({ node }: BlogCardProps){
   return (
     <Card onClick={() => goPost(node.frontmatter.slug)}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="node">
-            {node.frontmatter.title.substr(0,1)}
-          </Avatar>
-        }
         title={node.frontmatter.title}
         subheader={formatDate(node.frontmatter.date)}
       />

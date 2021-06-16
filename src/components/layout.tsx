@@ -22,20 +22,19 @@ export default function Layout({children, slug}: LayoutProps) {
     }
     
     const anchor_holder = document.getElementsByClassName("anchor-header")
-    if(!anchor_holder || anchor_holder.length < 0) {
+    if(!anchor_holder || anchor_holder.length <= 0) {
       return;
     }
     let selected_anchor = null
-    for(let a of Array.from(anchor_holder)){
+    const anchor_holder_arr = Array.from(anchor_holder)
+    for(let a of anchor_holder_arr){
       if(a.getBoundingClientRect().top > -30) {
-        console.log(a.getAttribute("href") ,".top: ", a.getBoundingClientRect().top)
-        console.log("body.top: ", document.body.scrollTop)
         selected_anchor = a.getAttribute("href")
         break
       }
     }
     if(!selected_anchor) {
-      selected_anchor = Array.from(anchor_holder)[anchor_holder.length -1].getAttribute("href")
+      selected_anchor = anchor_holder_arr[anchor_holder_arr.length -1].getAttribute("href")
     }
     document.querySelectorAll("aside a.selected").forEach(a => {
       a.classList.remove("selected");
@@ -45,12 +44,11 @@ export default function Layout({children, slug}: LayoutProps) {
       toc_selected && toc_selected.classList.add("selected")
     }
   }
-  
-  document.body.addEventListener("scroll", scrollHandler)
+
+  typeof document !== "undefined" && document.body.addEventListener("scroll", scrollHandler)
 
   return (
     <div>
-      <CssBaseline />
       <Sidebar
         open={open}
         slug={slug}
@@ -59,7 +57,6 @@ export default function Layout({children, slug}: LayoutProps) {
       />
       <main
         className={ open ? "sidebarOpen" : "sidebarClose"}
-        onLoad={scrollHandler}
       >
         <SearchBar />
         {children}

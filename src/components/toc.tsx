@@ -20,11 +20,9 @@ export default function Toc({toc}:TocProps) {
 const TocElement = ({toc}:TocProps) =>  (
   <ul>
     {
-      toc.items && toc.items.map(item => (
+      toc.items && toc.items.map((item) => (
         <li key={item.title}>
-          <a
-            href={item.url}
-          >{item.title}</a>
+          <a href={item.url}>{item.title}</a>
           {item.items && <TocElement toc={item} />}
         </li>
       ))

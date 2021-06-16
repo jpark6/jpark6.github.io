@@ -44,7 +44,7 @@ export default function IndexPage({ data }: IndexPageProps){
           <div className="cardContainer">
             <Grid container spacing={1}>
               {data.allMdx.edges.map(( { node} ) => (
-                <Grid item key={node.id} xs={12} sm={6} md={6} lg={4} xl={4}>
+                <Grid item key={node.id} xs={12} sm={12} md={6} lg={4} xl={3}>
                   <BlogCard node={node}/>
                 </Grid>
               ))}
