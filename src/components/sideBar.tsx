@@ -62,7 +62,7 @@ export default function SideBar({open, slug, handleDrawerOpen, handleDrawerClose
    * path 경로 object로 변환
    * /etc/hello1    =>    { key:etc, value:[{key:hello1 value:/etc/test/hello1`} ,
    * /etc/hello2                            {key:hello2, value:/etc/test/hello2}], 
-   * /mac/alfred            key:mac, value:[{key:alfref, value:/mac/alfred}] ... }
+   * /mac/mac            key:mac, value:[{key:alfref, value:/mac/mac}] ... }
    */
   data.allMdx.edges.forEach(
     (edge: EdgeProps) => {

@@ -1,6 +1,6 @@
 ---
 title: 'Gatsby 블로그 TOC 구현'
-slug: '/gatsby/Gatsby 블로그 TOC 구현'
+slug: '/Gatsby/Gatsby 블로그 TOC 구현'
 date: '2021-06-13'
 thumbnail: 'https://user-images.githubusercontent.com/3685876/56622781-72e22580-65ff-11e9-950f-e4628ce7628c.png'
 mainOrder: 0
@@ -214,44 +214,41 @@ import gatsbyTOCSassAfter from "../../images/gatsby/gatsby_TOC_sass_after.png"
 #### 스크롤에 따라 메인화면 header에 맞는 toc선택되도록 수정  
 - /src/component/layout.tsx
   ```typescript
-    const scrollHandler = () => {
-      const toc = document.getElementsByTagName("aside")
-      if(!toc || toc.length < 0 || !toc[0] ||  !toc[0].style || toc[0].style.visibility === "hidden") {
-        return;
-      }
-      
-      const anchor_holder = document.getElementsByClassName("anchor-header")
-      if(!anchor_holder || anchor_holder.length < 0) {
-        return;
-      }
-      let selected_anchor = null
-      for(let a of Array.from(anchor_holder)){
-        if(a.getBoundingClientRect().top > -20) {
-          selected_anchor = a.getAttribute("href")
-          break
-        }
-      }
-      if(!selected_anchor) {
-        selected_anchor = Array.from(anchor_holder)[anchor_holder.length -1].getAttribute("href")
-      }
-      document.querySelectorAll("aside a.selected").forEach(a => {
-        a.classList.remove("selected");
-      })
-      if(selected_anchor) {
-        const toc_selected = document.querySelector("aside a[href='"+ decodeURIComponent(selected_anchor) +"']")
-        toc_selected && toc_selected.classList.add("selected")
+  const scrollHandler = () => {
+    const toc = document.getElementsByTagName("aside")
+    if(!toc || toc.length < 0 || !toc[0] ||  !toc[0].style || toc[0].offsetWidth === 0) {
+      return;
+    }
+    
+    const anchor_holder = document.getElementsByClassName("anchor-header")
+    if(!anchor_holder || anchor_holder.length <= 0) {
+      return;
+    }
+    let selected_anchor = null
+    const anchor_holder_arr = Array.from(anchor_holder)
+    for(let a of anchor_holder_arr){
+      if(a.getBoundingClientRect().top > -30) {
+        selected_anchor = a.getAttribute("href")
+        break
       }
     }
+    if(!selected_anchor) {
+      selected_anchor = anchor_holder_arr[anchor_holder_arr.length -1].getAttribute("href")
+    }
+    document.querySelectorAll("aside a.selected").forEach(a => {
+      a.classList.remove("selected");
+    })
+    if(selected_anchor) {
+      const toc_selected = document.querySelector("aside a[href='"+ decodeURIComponent(selected_anchor) +"']")
+      toc_selected && toc_selected.classList.add("selected")
+    }
+  }
     ...
-    return (
-      ...
-      <main
-          className={ open ? "sidebarOpen" : "sidebarClose"}
-          onScroll={scrollHandler}
-          onLoad={scrollHandler}
-        >
-      ...
-    )
+    // body에 scroll event listener 추가
+    // SSR 에러 방지(typeof document !== "undefined")
+    typeof document !== "undefined" && document.body.addEventListener("scroll", scrollHandler)
+    ...
+    
   ```
 
 

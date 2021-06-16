@@ -10,7 +10,7 @@ interface LayoutProps {
 }
 
 export default function Layout({children, slug}: LayoutProps) {
-  const isMobile = (typeof window !== "undefined" && window.innerWidth < 500)
+  const isMobile = (typeof window !== "undefined" && window.innerWidth < 650)
   const [open, setOpen] = useState(!isMobile)
   const handleDrawerOpen = () => setOpen(true)
   const handleDrawerClose = () => setOpen(false)
