@@ -30,7 +30,7 @@ body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   color: hsla(0, 0%, 0%, 0.8)
-  font-family: "Cascadia Mono PL", "Nanum Square Round", Monaco, georgia, serif
+  font-family: "Nanum Square Round", Monaco, georgia, serif
   font-weight: normal
   font-size: 1rem
   word-wrap: break-word
@@ -417,7 +417,7 @@ div.beforeLoadPage
         width: 10px
         color: white
     .MuiTypography-body1
-      font-family: "Cascadia Mono PL", "Nanum Square Round", Monaco, georgia, serif
+      font-family: "Nanum Square Round", Monaco, georgia, serif
       border-left: 3px solid #1f1f1f
       text-overflow: ellipsis
       overflow: hidden
@@ -450,8 +450,8 @@ div.beforeLoadPage
 /* 검색창 */
 .searchBar
   position: relative
-  height: 30px
-  margin: 10px 2rem
+  height: 50px
+  padding: 10px 2rem
   input
     border: none
     border-bottom: 2px solid #1ac5be
@@ -471,8 +471,8 @@ div.beforeLoadPage
         color: #1ac5be
     + svg
       position: absolute
-      left: 5px
-      top: 6px
+      left: calc(2rem + 5px)
+      top: 16px
       color: #7d7d7d
   button
     width: 30px
@@ -542,11 +542,15 @@ section
   flex-direction: column
   height: 100%
   max-width: 1200px
+  width: 100%
   margin: auto
+  &.sidebarOpen
+    width: calc(100% - 320px)
   .content
     display: flex
     padding: 0 2rem
     .contentMain
+      width: calc(100% - 200px)
       article
         padding: 20px
         background-color: white
@@ -620,7 +624,7 @@ section
     .MuiCardHeader-root
       padding: 10px
     .MuiTypography-root
-      font-family: "Cascadia Mono PL", "Nanum Square Round", Monaco, serif
+      font-family: "Nanum Square Round", Monaco, serif
     .MuiCardHeader-title
       font-size: 1.1em
     .MuiCardHeader-subheader
@@ -634,7 +638,7 @@ section
     .MuiCardHeader-content
       width: calc(100% - 60px)
       .MuiTypography-body2
-        font-family: "Cascadia Mono PL", "Nanum Square Round", Monaco, serif
+        font-family: "Nanum Square Round", Monaco, serif
       span
         overflow: hidden
         text-overflow: ellipsis
@@ -657,11 +661,25 @@ section
       button.hideSideBarBtn
         visibility: visible
   section
+    .searchBar
+      padding: 10px 1rem
+      input
+        + svg
+          left: calc(1rem + 5px)
+    .content
+      padding: 0 1rem
     &.sidebarClose
+      .content
+        .contentMain
+          width: calc(100% - 200px)
       aside
         display: block
-  aside
-    display: none
+    &.sidebarOpen
+      .content
+        .contentMain
+          width: 100%
+    aside
+      display: none
     
 @media only screen and (max-width: 650px)
   html
@@ -671,13 +689,16 @@ section
     .sidebarDiv
       width: 100%
   .searchBar
-    margin: 10px 1rem
+    padding: 10px 1rem
   section
     .content
       padding: 0 1rem
     article
       width: 100%
     &.sidebarClose
+      .content
+        .contentMain
+          width: 100%
       aside
         display: none
   button.showSideBarBtn
