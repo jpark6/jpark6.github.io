@@ -48,19 +48,21 @@ export default function Layout({children, slug}: LayoutProps) {
   typeof document !== "undefined" && document.body.addEventListener("scroll", scrollHandler)
 
   return (
-    <div>
+    <main>
       <Sidebar
         open={open}
         slug={slug}
         handleDrawerOpen={handleDrawerOpen}
         handleDrawerClose={handleDrawerClose}
       />
-      <main
+      <section
         className={ open ? "sidebarOpen" : "sidebarClose"}
       >
         <SearchBar />
-        {children}
-      </main>
-    </div>
+        <div className="content">
+          {children}
+        </div>
+      </section>
+    </main>
   )
 }

@@ -72,11 +72,9 @@ export default function searchBar() {
         onChange={handleSearchInput}
         value={query}
       />
-      <button type="button">
-        <FontAwesomeIcon
-          icon={faSearch}
-        />
-      </button>
+      <FontAwesomeIcon
+        icon={faSearch}
+      />
       <button type="button">
         <FontAwesomeIcon
           onClick={openGitRepository}

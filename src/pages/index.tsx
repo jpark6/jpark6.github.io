@@ -39,12 +39,12 @@ export default function IndexPage({ data }: IndexPageProps){
       <Spinner />
       <Layout>
         <Seo title="jPark's Blog" lang="ko"/>
-        <div className={'main-container'}>
+        <div className="indexContainer">
           <h4>{data.allMdx.totalCount} Posts</h4>
           <div className="cardContainer">
             <Grid container spacing={1}>
               {data.allMdx.edges.map(( { node} ) => (
-                <Grid item key={node.id} xs={12} sm={12} md={6} lg={4} xl={3}>
+                <Grid item key={node.id} xs={12} sm={12} md={6} lg={4} xl={4}>
                   <BlogCard node={node}/>
                 </Grid>
               ))}

@@ -381,75 +381,77 @@ div.beforeLoadPage
   height: 100%
   #gatsby-focus-wrapper
     height: 100%
-    > div
+    > main 
       &:first-child
         height: 100%
+        display: flex
 
 /* 사이드바 */
 .sidebar
-  width: 320px
-  height: 100%
-  float: left
-  background-color: #1f1f1f
-  color: #FFF
-  transition: width linear .5s
-  position: fixed
-  z-index: 2
-  overflow: auto
-  .sidebar-title
-    height: 50px
-    display: flex
-    background-color: #1ac5be
-    justify-content: center
-    align-items: center
+  min-width: 20rem
+  position: relative
+  .sidebarDiv
+    position: fixed
+    width: 320px
+    height: 100%
+    background-color: #1f1f1f
     color: white
-    margin: 0
-  .hideSideBarBtn
-    position: absolute
-    top: 5px
-    right: 0
-    width: 40px
-    height: 40px
-    border-radius: 0
-    visibility: hidden
-    svg
-      width: 10px
+    overflow-y: auto
+    .sidebar-title
+      height: 50px
+      display: flex
+      background-color: #1ac5be
+      justify-content: center
+      align-items: center
       color: white
-  .MuiTypography-body1
-    font-family: "Cascadia Mono PL", "Nanum Square Round", Monaco, georgia, serif
-    border-left: 3px solid #1f1f1f
-    text-overflow: ellipsis
-    overflow: hidden
-    padding: 5px
-    white-space: nowrap
-    font-size: .88rem
-  .MuiSvgIcon-root
-    color: #FFF
-  .MuiListItem-gutters
-    padding: 0 16px 0 0
-    margin: 0
-  .MuiListItemText-root
-    margin: 0
-    cursor: pointer
-  /* 선택된 메뉴 강조 */
-  .selectedMenu
+      margin: 0
+    .hideSideBarBtn
+      position: absolute
+      top: 5px
+      right: 0
+      width: 40px
+      height: 40px
+      border-radius: 0
+      visibility: hidden
+      svg
+        width: 10px
+        color: white
     .MuiTypography-body1
-      border-left: 3px solid #1ac5be
-      color: #1ac5be
-      font-weight: 600
-    svg
-      color: #1ac5be
-  .selectedSubMenu
-    .MuiTypography-body1
-      color: #1ac5be
-      font-weight: 600
+      font-family: "Cascadia Mono PL", "Nanum Square Round", Monaco, georgia, serif
+      border-left: 3px solid #1f1f1f
+      text-overflow: ellipsis
+      overflow: hidden
+      padding: 5px
+      white-space: nowrap
+      font-size: .88rem
     .MuiSvgIcon-root
-      color: #1ac5be
+      color: #FFF
+    .MuiListItem-gutters
+      padding: 0 16px 0 0
+      margin: 0
+    .MuiListItemText-root
+      margin: 0
+      cursor: pointer
+    /* 선택된 메뉴 강조 */
+    .selectedMenu
+      .MuiTypography-body1
+        border-left: 3px solid #1ac5be
+        color: #1ac5be
+        font-weight: 600
+      svg
+        color: #1ac5be
+    .selectedSubMenu
+      .MuiTypography-body1
+        color: #1ac5be
+        font-weight: 600
+      .MuiSvgIcon-root
+        color: #1ac5be
 
 /* 검색창 */
 .searchBar
   position: relative
-  height: 40px
+  height: 30px
+  margin: 10px 2rem
   input
     border: none
     border-bottom: 2px solid #1ac5be
@@ -460,15 +462,18 @@ div.beforeLoadPage
     box-sizing: border-box
     background-color: transparent
     border-radius: 0
-    padding: 0 10px
+    padding: 0 25px
     font-weight: 600
     &:focus
       outline: none
       box-shadow: rgba(98, 198, 198, 0.52) 0 5px 8px 1px
-      + button
+      + svg
         color: #1ac5be
-    + button
-      margin-left: -30px
+    + svg
+      position: absolute
+      left: 5px
+      top: 6px
+      color: #7d7d7d
   button
     width: 30px
     height: 30px
@@ -522,40 +527,81 @@ button.showSideBarBtn
   width: 33px
   height: 30px
   position: fixed
-  left: 5px
+  bottom: 15px
+  left: 15px
+  margin: 0
   background-color: #525252
   border-radius: .2em
   color: #fff
   float: left
-  margin: 10px
   z-index: 1
   &:hover
     background-color: #000
-main
+section
+  display: flex
+  flex-direction: column
   height: 100%
-  padding: 10px 10px 10px 30px
-  &.sidebarClose
-    width: 100%
-    padding-left: 60px
-  &.sidebarOpen
-    width: calc(100% - 320px)
-    margin-left: 320px
-  article
-    width: calc(100% - 320px)
-    max-width: 760px
-    padding-top: 10px
-    h1
-      font-size: 1.8rem
-    h2
-      font-size: 1.6rem
-    h3
-      font-size: 1.4rem
-    h4
-      font-size: 1.1rem
-    h5
-      font-size: .95rem
-    h6
-      font-size: .8rem
+  max-width: 1200px
+  margin: auto
+  .content
+    display: flex
+    padding: 0 2rem
+    .contentMain
+      article
+        padding: 20px
+        background-color: white
+        box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132),0 0.3px 0.9px 0 rgba(0,0,0,0.108)
+        h1
+          font-size: 1.8rem
+        h2
+          font-size: 1.6rem
+        h3
+          font-size: 1.4rem
+        h4
+          font-size: 1.1rem
+        h5
+          font-size: .95rem
+        h6
+          font-size: .8rem
+      .contentReply
+        margin: 10px 0
+        padding: 0 10px
+        background-color: white
+        box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132),0 0.3px 0.9px 0 rgba(0,0,0,0.108)
+        .utterances
+          max-width: 100%
+      .indexContainer
+        padding: 20px 0 0 10px
+    aside
+      width: 200px
+      min-width: 200px
+      ul
+        &:first-child
+          position: fixed
+          border-left: 3px solid #1ac5be
+          padding-left: 5px
+          width: 200px
+        margin-left: 10px
+        margin-top: .3rem
+        margin-bottom: 0
+        list-style: none
+        padding: 0
+        li
+          margin-bottom: .3rem
+          &:last-child
+            margin-bottom: 0
+        a
+          color: #727273
+          font-size: 14px
+          cursor: pointer
+          transition: all linear .3s
+          display: inline-block
+          &.selected
+            color: #1ac5be
+            text-decoration: underline
+            font-weight: 600
+          &:hover
+            color: #1ac5be
   ol
     padding-inline-start: 20px
   ul
@@ -571,6 +617,8 @@ main
     box-shadow: 0 2px 1px 0 rgb(0 0 0 / 20%), 2px 2px 1px 0 rgb(0 0 0 / 14%), 0 1px 2px 1px rgb(0 0 0 / 12%)
     &:last-child
       margin-right: 0
+    .MuiCardHeader-root
+      padding: 10px
     .MuiTypography-root
       font-family: "Cascadia Mono PL", "Nanum Square Round", Monaco, serif
     .MuiCardHeader-title
@@ -593,7 +641,7 @@ main
         white-space: nowrap
     > .MuiCardContent-root /* card content */
       padding: 0
-      margin: 16px
+      margin: 10px
       overflow: hidden
       white-space: normal
       line-height: 1.4
@@ -603,62 +651,37 @@ main
       -webkit-box-orient: vertical
       display: -webkit-box
       font-size: .88rem
-.utterances
-  float: left
-aside
-  position: fixed
-  top: 50px
-  right: 20px
-  float: right
-  width: 300px
-  border-left: 3px solid #1ac5be
-  ul
-    margin-left: 10px
-    margin-top: .3rem
-    margin-bottom: 0
-    list-style: none
-    padding: 0
-    li
-      margin-bottom: .3rem
-      &:last-child
-        margin-bottom: 0
-    a
-      color: #727273
-      font-size: 14px
-      cursor: pointer
-      transition: all linear .3s
-      &.selected
-        color: #1ac5be
-        text-decoration: underline
-        font-weight: 600
-      &:hover
-        color: #1ac5be
+@media only screen and (max-width: 960px)
+  .sidebar
+    .sidebarDiv
+      button.hideSideBarBtn
+        visibility: visible
+  section
+    &.sidebarClose
+      aside
+        display: block
+  aside
+    display: none
+    
 @media only screen and (max-width: 650px)
   html
     font-size: 100%
   .sidebar
-    width: 100%
-  main
-    padding: 10px
-    &.sidebarOpen
+    min-width: 100%
+    .sidebarDiv
       width: 100%
-      padding: 10px
-      margin-left: 0
+  .searchBar
+    margin: 10px 1rem
+  section
+    .content
+      padding: 0 1rem
+    article
+      width: 100%
     &.sidebarClose
-      width: 100%
-      padding: 10px
-      margin-left: 0
+      aside
+        display: none
   button.showSideBarBtn
     bottom: 15px
     left: 15px
     margin: 0
-@media only screen and (max-width: 1200px)
-  .sidebar
-    button.hideSideBarBtn
-      visibility: visible
-  main
-    article
-      width: 100%
-    aside
-      display: none
-    
+ 

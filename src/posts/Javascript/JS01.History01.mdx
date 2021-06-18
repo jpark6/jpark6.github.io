@@ -15,7 +15,8 @@ postOrder: 0
 - Node.js 같은 런타임 환경과 같이 서버 프로그래밍에서도 사용.
 - Electron으로 데스크탑용 앱 개발에서도 사용 가능  
   + <a href="https://www.electronjs.org/apps" target="electron">[Electron을 사용중인 앱들]</a> 대표적인 앱 : Atom, Visual Studio Code, Slack, ...
-- 웹브라우저의 발전이 Javascript의 발전에도 영향을 미쳤다.
+- 웹브라우저에서 동작하는 가벼운 프로그래밍 언어로 시작한 Javascript이다.
+- 웹브라우저가 발전함에 따라 Javascript도 발전해왔다.
 - 그러므로 웹브라우저 및 Javascript의 역사에 대해 알아보자.
 <br />
 
@@ -34,9 +35,10 @@ postOrder: 0
 <br />
 
 - 개발 책임자였던 마크앤드리슨이 동료들을 데리고 넷스케이프 커뮤니케이션이라는 회사 설립
-- 이 기업의 브라우저 내부 코드명이 모질라였음(Mosaic & Godzilla)
+- 이 기업의 브라우저 내부 코드명이 모질라(Mozilla)였음(Mosaic & Godzilla)
 - 초기 인터넷 사용자들의 폭발적인 반응을 얻어 약 80%의 시장점유율 차지
 - 1990년대 후반 Internet Explorer와의 싸움에서 밀려 점유율을 회복하지 못하고 개발 중단됨.
+- Javascript가 처음으로 내장된 브라우저(1996년 3월 version 2)
 
 <img
   src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Netscape-navigator-usage-data.svg/1920px-Netscape-navigator-usage-data.svg.png"
@@ -48,18 +50,12 @@ postOrder: 0
 <br />
 
 ## 1995년
-### 모카(Mocha), 라이브스크립트(LiveScript), 자바스크립트(JavaScript)
-- 넷스케이프 커뮤니케이션은 브렌던 아이크(Brendan Eich) 영입하여 브라우저에 내장할 스크립트 언어 개발을 시작함  
-- 원래 모카(Mocha)라는 이름으로 개발되었으나 공식적으로는 라이브스크립트(LiveScript)로 불렸으며 나중에 이름이 자바스크립트로 변경됨.  
-- 12월 넷스케이프 베타 2.0 베타 3에서 자바스크립트라는 이름을 채용함  
-- 자바스크립트가 들어간 넷스케이프 공식버전은 1996년 3월에 출시함.  
 
 ### 인터넷 익스플로러(Internet Explorer, IE)
 <img src="https://lh6.ggpht.com/_MOj9mkIt81A/TXr9XDr3pxI/AAAAAAAAHI0/YJ7GQTIj6c4/image7.png?imgmax=800" alt="internet explorer1" />
 
 - 모자이크에서 소스를 가져와서 개발함.  
 - 윈도우 운영체제의 기본 브라우저로 채택~~강제사용~~되어 점유율을 높여감.
-- Javascript와 비슷한 Jscript를 익스플로러에 내장함.
 <img
   src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Internet-explorer-usage-data.svg/1920px-Internet-explorer-usage-data.svg.png"
   alt="Internet Explorer 점유율"
@@ -68,9 +64,24 @@ postOrder: 0
 
   - 인터넷 익스플로러 시장점유율(출처: <a href="https://ko.wikipedia.org/wiki/%EC%9D%B8%ED%84%B0%EB%84%B7_%EC%9D%B5%EC%8A%A4%ED%94%8C%EB%A1%9C%EB%9F%AC" target="wiki_ie">[위키백과: 인터넷 익스플로러]</a>)
 
+
+
 ## 1996년
-### ECMAScript
-- 11월 넷스케이프에서 표준화를 위해 Javascript 기술 규격을 ECMA라는 비영리 표준 기구에 제출
+### 자바스크립트(JavaScript)
+- 넷스케이프 커뮤니케이션은 브렌던 아이크(Brendan Eich) 영입하여 브라우저에 내장할 스크립트 언어 개발을 시작해 10일만에 완성하였음.  
+- 원래 모카(Mocha)라는 이름으로 개발되었으나 공식적으로는 라이브스크립트(LiveScript)로 불렸으며 나중에 이름이 자바스크립트로 변경됨.  
+- 자바와 자바스크립트는 서로 관련이 없는 언어이지만 넷스케이프에서 마케팅적인 이유로 Java라는 이름을 일부러 넣었다는 얘기가 있음.  
+- 3월에 자바스크립트가 처음으로 들어간 넷스케이프 네비게이션 2출시함.  
+
+### JScript 
+- 8월, 마이크로소프트가 자바스크립트와 유사한 JScript를 인터넷 익스플로러 3.0에 넣어서 출시함.  
+
+## 1997년  
+### ECMAScript  
+- 넷스케이프에 커뮤니케이션에서는 점유율을 높여가는 인터넷 익스플로러를 견재할 필요가 있었음.  
+- 넷스케이프와 마이크로소프트는 각자 브라우저에서만 동작하는 기능들을 Javascript와 JScript에 추가하기 시작함.  
+- 브라우저에 딸 웹페이지가 동작하는 방식이 달라지는 크로스 브라우징 이슈가 발생하였음.  
+- 이에  넷스케이프에서 표준화를 위해 Javascript 기술 규격을 ECMA라는 비영리 표준 기구에 제출
 - ECMAScript 1은 1997년 6월에 출판되었고 2021년 6월 15일 현재 ECMAScript 2021(ES12) 까지 나와 있음.
 
 ## 1999년
@@ -83,6 +94,7 @@ postOrder: 0
 - 많은 사이트를 찾아봤으나 XHR과 AJAX의 차이점이 크게 뭔지 잘 모르겠음.
 - JQuery에서 ajax로 사용하고 VanillaJS 사용시 XHR을 사용하는 정도로만 알고있다. 
 - 4월1일 구글에서 발표한 gmail과 2005년 2월 8일에 발표한 구글지도가 아무런 플러그인 없이 AJAX로 구현된 것으로 밝혀져 화제가 되었음.
+- XML보다는 JSON을 사용하여 서버와 비동기 통신을 사용하여 페이지 일부의 데이터를 갱신하는 식으로 웹 개발이 발전함.
 
 <br />
 

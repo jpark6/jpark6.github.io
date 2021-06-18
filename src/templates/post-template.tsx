@@ -34,15 +34,17 @@ export default function PostLayout({path, data}: PostLayoutProps) {
   return (
     <Layout slug={data.mdx.frontmatter.slug}>
       <Seo title={data.mdx.frontmatter.title} lang="ko"/>
-      <article>
-        <h1>{data.mdx.frontmatter.title}</h1>
-        <time>Date: {formatDate(data.mdx.frontmatter.date)}</time>
-        <br />
-        <br />
-        <MDXRenderer>{data.mdx.body}</MDXRenderer>
-      </article>
+      <div className="contentMain">
+        <article>
+          <h1>{data.mdx.frontmatter.title}</h1>
+          <time>Date: {formatDate(data.mdx.frontmatter.date)}</time>
+          <br />
+          <br />
+          <MDXRenderer>{data.mdx.body}</MDXRenderer>
+        </article>
+        <Utterance repo='jpark6/jpark6.github.io' theme='github-light' />
+      </div>
       <Toc toc={data.mdx.tableOfContents}/>
-      <Utterance repo='jpark6/jpark6.github.io' theme='github-light' />
     </Layout>
   )
 }

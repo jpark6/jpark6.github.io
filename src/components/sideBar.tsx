@@ -79,9 +79,10 @@ export default function SideBar({open, slug, handleDrawerOpen, handleDrawerClose
 
   return (
     open ? (
-    <div
+    <nav
       className="sidebar"
       >
+      <div className="sidebarDiv">
       <header>
         <Link to="/"><h2 className="sidebar-title">{data.site.siteMetadata.title}</h2></Link>
         <IconButton
@@ -96,7 +97,8 @@ export default function SideBar({open, slug, handleDrawerOpen, handleDrawerClose
       { dir_arr.map((e) => ( <MainMenu key={e.key} elem={e} slug={slug} /> ))}
       </List>
       <Divider />
-    </div>
+      </div>
+    </nav>
     ) : (
       <IconButton
         aria-label="open drawer"
