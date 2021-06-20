@@ -36,6 +36,9 @@ export default function searchBar() {
   const mailToMe = () => {
     location.href = "mailto:qkstjr09@gmail.com"
   }
+  const openTIL = () => {
+    window.open("https://jpark6-til.netlify.app", "_til")
+  }
   const handleSearchInput = (event:React.FormEvent<HTMLInputElement>) => {
     const query = event.currentTarget.value.toLowerCase()
     const posts = data.allMdx.edges || []
@@ -89,6 +92,7 @@ export default function searchBar() {
           size="2x"
         />
       </button>
+      <button type="button" onClick={openTIL}>TIL</button>
       <SearchBox filteredPosts={filteredPosts} query={query} setQuery={setQuery}/>
     </div>
   )
