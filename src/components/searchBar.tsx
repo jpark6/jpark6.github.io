@@ -92,7 +92,13 @@ export default function searchBar() {
           size="2x"
         />
       </button>
-      <button type="button" onClick={openTIL}>TIL</button>
+      <button
+        type="button"
+        onClick={openTIL}
+        className="til"
+      >
+        TIL
+      </button>
       <SearchBox filteredPosts={filteredPosts} query={query} setQuery={setQuery}/>
     </div>
   )
