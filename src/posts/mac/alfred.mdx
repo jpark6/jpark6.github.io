@@ -1,12 +1,135 @@
 ---
 title: "Mac OS Alfred"
 slug: "/Mac/Alfred/"
-date: "2021-05-25"
+date: "2021-06-21"
 thumbnail: https://cdn.vox-cdn.com/thumbor/rFcjDfQww7Xt1Y-NmubNo3wHIrE=/50x0:590x360/1200x800/filters:focal(50x0:590x360)/cdn.vox-cdn.com/assets/1091673/alfred-app-mac.jpg
 mainOrder: 2
 postOrder: 0
 ---
-import alfredSearch from "../../images/mac/alfred_search.png"
+import alfredHomepage from "../../images/mac/alfred_homepage.png"
+import alfredInit from "../../images/mac/alfred_init.png"
+import alfredSearchApp from "../../images/mac/alfred_search_app.png"
+import alfredSearchFile from "../../images/mac/alfred_search_file.png"
+import alfredFindFile from "../../images/mac/alfred_find_file.png"
+import alfredFindFileEnter from "../../images/mac/alfred_find_file_enter.png"
+import alfredSearchUrl from "../../images/mac/alfred_search_url.png"
+import alfredCustomWebSearch from "../../images/mac/alfred_custom_web_search.png"
+import alfredAddCustomSearch from "../../images/mac/alfred_add_custom_search.png"
+import alfredSearchNm from "../../images/mac/alfred_search_nm.png"
+import alfredSearchNmResult from "../../images/mac/alfred_search_nm_result.png"
+import alfredShutDown from "../../images/mac/alfred_shutdown.png"
+import alfredRestart from "../../images/mac/alfred_restart.png"
 
-## Alfred Logo  
-<img src={alfredSearch} alt="alfred search" />
+## 🎬  소개
+- 맥에서 사용할 수 있는 데스크탑 검색 프로그램이다.  
+- 기본앱인 `Spotlight` 보다 조금 더 많은 기능을 제공한다.
+
+## 🏠  Homepage
+<img src={alfredHomepage} alt="alfred homepage" /> <br />
+
+> <a href="https://www.alfredapp.com/" target="_alfred">[Alfred Homepage]</a>  <br />
+
+<br />
+
+## 🚘  설치방법  
+- 위의 홈페이지에서 다운로드 받을 수 있다.  
+- HomeBrew를 사용할 경우
+  ```shell{1}
+  brew install alfred
+  ```
+<br />
+
+## ⚡️  Alfred 검색창 열기
+- 기본 단축키는 `Alt` + `Space`이다.(설정화면에서 변경 가능하다.)
+- 기본 단축키를 입력하게 되면 화면 중앙에 검색 창이 나온다.
+<img src={alfredInit} alt="alfred init" /> <br />
+<br />
+
+## 🔍  파일 및 어플리케이션 검색
+### 어플리케이션 검색
+<img src={alfredSearchApp} alt="alfred search app" /> <br />  
+
+- `어플리케이션명`을 입력하면 검색 결과가 나오고 클릭 또는 `Enter` 입력시 실행된다.  
+
+<br />
+
+### 파일 검색
+<img src={alfredSearchFile} alt="alfred search file" />  
+
+- `파일명`을 입력하면 검색 결과가 나오고 클릭 또는 `Enter` 입력시 파일이 열린다.
+
+<img src={alfredFindFile} alt="alfred find file" />  
+
+- find `파일명`을 입력하면 검색 결과가 나오고 클릭 또는 `Enter` 입력시 파일이 저장되어있는 폴더가 열린다.
+
+<img src={alfredFindFileEnter} alt="alfred find file enter" /> <br />  
+
+<br />
+
+## 🖥  웹 검색
+### url 입력
+
+<img src={alfredSearchUrl} alt="alfred search url" /> <br />  
+
+- `url`을 입력하면 브라우저에 해당 `url`이 열린다.
+
+### Custom Web Search  
+
+
+<img src={alfredCustomWebSearch} alt="alfred custom web search" /> <br />  
+
+- Alfred의 환경설정을 통해 검색어 Custom이 가능하다.
+<br />
+
+#### google검색
+- g `검색어` (기본설정은 google `검색어` 이지만 길어서 바꿈)
+#### youtube검색
+-  y `검색어` (기본설정은 youtube `검색어` 이지만 길어서 바꿈)
+
+<br />
+
+- 이런식으로 기존의 설정을 변경하거나
+- NaverMap 검색: nm `검색어` (네이버 길찾기) 이런식으로 등록이 가능하다.
+
+<br />
+
+#### Custom Web Search 등록  
+- 네이버 길찾기를 등록해보자
+- 환경설정 > Features > Web Search 메뉴를 선택
+- 우측 하단 `Add Custom Search` 버튼 클릭
+
+<img src={alfredAddCustomSearch} alt="alfred add custom search" /> <br />  
+
+- Search URL: https://map.naver.com/v5/search/{query}
+- Title : Search map.naver.com for '\{query\}'
+- Keyword: nm
+- 이미지는 넣지 않아도 되지만 구글링해서 다운로드 받은 네이버 맵 아이콘을 넣었다.
+- 이렇게 저장을 하고 실행을 해보자
+
+<img src={alfredSearchNm} alt="alfred search naver map" />
+<br />
+<img src={alfredSearchNmResult} alt="alfred search naver map result" />
+
+- 검색이 잘 되는 것을 확인하 수 있다.
+- 이와 비슷하게 번역기, 사전, 쿠팡, 티몬 등등 의 웹사이트 검색기능을 추가할 수 있다.
+
+<br />
+
+### ❗️ 맥 끄기 및 재시동
+#### 맥 끄기
+- shutdown 을 입력하면 맥을 끌 수 있다.  
+
+<img src={alfredShutDown} alt="alfred shutdown"/>
+<br />
+
+#### 맥 재시동
+- restart 를 입력하면 맥을 재시동 할 수 있다.  
+
+<img src={alfredRestart} alt="alfred restart"/>
+<br />
+
+## 🎬  마무리
+- 내가 쓰고 있는 기능 외에도 많은 기능이 있겠지만 내가 주로 쓰는 기능은 여기까지이다.
+- 유료버전은 돈아까워서 구매를 안했다.
+- 지금 쓰고 있는 기능 이외에 좋은 기능(무료)을 알고 계신분은 댓글로 알려주세요 😎
+
