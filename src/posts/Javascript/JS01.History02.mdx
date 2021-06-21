@@ -1,0 +1,101 @@
+---
+title: JavaScript의 역사 2:jQuery
+slug: /Javascript/JavaScript 역사 2:jQuery/
+date: 2021-06-21
+thumbnail: https://blog.kakaocdn.net/dn/DV2IJ/btqPIIJnRBG/JtVw9izVWYE2WEVMeFvzDK/img.png
+mainOrder: 1
+postOrder: 1
+---
+
+## 2006년  
+### JQuery  
+
+<img
+  src="https://blog.kakaocdn.net/dn/DV2IJ/btqPIIJnRBG/JtVw9izVWYE2WEVMeFvzDK/img.png"
+  alt="jQuery"
+  style="max-width: 400px"
+/>
+
+<br />  
+
+> write less, do more.  
+
+- jQuery(제이쿼리)는 2006년 존 레식에 의해 소개된 자바스크립트 라이브러리이다.  
+- javascript 사용시 발생하는 크로스 브라우징 문제를 해결했다.
+- JavaScript == jQuery 라고 봐도 될 정도로 많은 사이트에서 사용해왔다.
+- ES6+ 및 Frontend Framework(React, Vue, Angular, Svelte, ...)들이 나오면서 점점 사용 빈도가 줄고 있다. 
+
+<br />
+
+
+#### Sizzle Engine
+- css Selector를 사용하여 css에 대한 기본적인 지식이 있으면 사용할 수 있다.  
+- (현재는 javascript에도 querySelector,querySelectorAll이 있어 비슷하게 사용할 수 있다.)  
+- ex) 
+    ```javascript{1}
+    $("div#main > div.sub > ul > li.on").text("on");
+    ```
+
+<br />
+
+#### 메소드 체이닝
+- 메소드 체이닝 기법을 활용하여 메소드들을 이어 쓸 수 있다.  
+- ex) 일부러 코드 길이 차이가 많이 나는 예시를 선택했다.  
+    + javascript (2006년이니 var를 쓰겠다.)
+
+    ```javascript{1-22}
+    var child1 = document.createElement("div");
+    var child2 = document.createElement("div");
+    var child3 = document.createElement("div");
+    
+    child1.classList.add("child");
+    child1.textContent = "chlid1";
+    child1.style.color = "yellow";
+
+    child2.classList.add("child");
+    child2.textContent = "child2";
+    child2.style.color = "green";
+
+    child3.classList.add("child");
+    child3.textContent = "child3";
+    child3.style.color = "blue";
+    
+    var parent = document.getElementById("parent")
+    parent.append(child1, child2, child3);
+    parent.style.backgroundColor = "#DDD";
+    parent.onclick = function(){
+        alert("parent");
+    }
+    ```
+
+    + jQuery  
+
+    ```javascript{1-9}
+    $("#parent")
+      .append($("<div>",{class: "child", text: "child1"}).css({color: "yellow"}))
+      .append($("<div>",{class: "child", text: "child2"}).css({color: "green" }))
+      .append($("<div>",{class: "child", text: "child3"}).css({color: "blue"  }))
+      .css({backgroundColor: "#DDD"})
+      .click(function(){
+          alert("parent");
+      });
+    ```
+
+#### 장점  
+- 기존 자바스크리트에 비해 쉽고 간결하게 코드를 작성할 수 있다.  
+- 개발자가 아니더라도 이해하기 쉬워 초기 진입 장벽이 낮다.  
+- slide, pade, show, hide 같은 애니메이션 메소드들을 제공한다.
+
+#### 단점
+- 느리다.  
+    + sizzle의 단점이라고 볼 수 있다. $를 남발할 경우, 페이지가 느리게 동작할 수 있다.  
+    + jqeury의 $("#some_element")가 javascript의 document.getElementById("some_element") 보다 10배 정도 느리다.
+    + 페이지가 단순할 경우에는 크게 문제되지 않는 부분이기는 하다.
+- 크로스브라우징 이슈가 감소해 사용 필요가 적어졌다.
+    + IE가 시장을 점유할 때와는 달리 모든 브라우저(IE11 제외)들이 ECMAScript 표준을 맞추고있다.  
+    + ES6+의 기능만 사용해도 충분히 웹개발이 가능해 jQuery를 굳이 사용할 필요가 없다.  
+- Angular, Vue, React 사용시에도 ES6+와 비슷한 이유로 사용할 필요가 없다.
+
+
+
+
