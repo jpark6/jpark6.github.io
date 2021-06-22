@@ -1,5 +1,4 @@
 import * as React from 'react'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import Sidebar from "./sideBar"
 import SearchBar from "./searchBar"
 import { useState } from "react"

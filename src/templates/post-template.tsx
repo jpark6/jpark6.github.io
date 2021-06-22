@@ -5,9 +5,10 @@ import Seo from '../components/seo'
 import {graphql} from "gatsby"
 import {MDXRenderer} from "gatsby-plugin-mdx"
 import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
-import Utterance from '../components/utterance'
+import Utterances from '../components/utterances'
 import Toc from "../components/toc"
 import { formatDate } from "../script/common"
+import Disqus from '../components/disqus'
 
 interface Item {
   url: string
@@ -42,7 +43,8 @@ export default function PostLayout({path, data}: PostLayoutProps) {
           <br />
           <MDXRenderer>{data.mdx.body}</MDXRenderer>
         </article>
-        <Utterance repo='jpark6/jpark6.github.io' theme='github-light' />
+        {/* <Utterances repo='jpark6/jpark6.github.io' theme='github-light' /> */}
+        <Disqus />
       </div>
       <Toc toc={data.mdx.tableOfContents}/>
     </Layout>

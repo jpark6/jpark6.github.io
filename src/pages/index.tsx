@@ -38,7 +38,7 @@ export default function IndexPage({ data }: IndexPageProps){
     <>
       <Spinner />
       <Layout>
-        <Seo title="jPark's Blog" lang="ko"/>
+        <Seo title="" lang="ko"/>
         <div className="indexContainer">
           <h4>{data.allMdx.totalCount} Posts</h4>
           <div className="cardContainer">

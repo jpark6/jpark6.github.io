@@ -3,7 +3,7 @@ import SearchBox from './searchBox'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import { Dispatch, SetStateAction, useState } from "react"
 
 export default function searchBar() {
