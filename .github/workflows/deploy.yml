@@ -11,14 +11,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Git User Settings
-        run: |
-          git config --global user.email "qkstjr09@gmail.com"
-          git config --global user.name "jpark6"
+      #- name: Git User Settings
+      #  run: |
+      #    git config --local user.email "qkstjr09@gmail.com"
+      #    git config --local user.name "jpark6"
+      
       - name: Dependencies
         run: yarn install
         
       - name: Deploy
-        run: yarn run deploy
         env:
-          GH_PAT: ${{ secrets.ACCESS_TOKEN }}
+          GH_API_KEY: ${{ secrets.ACCESS_TOKEN }}
+        run: yarn run deploy
