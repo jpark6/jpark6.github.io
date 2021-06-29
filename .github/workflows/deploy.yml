@@ -14,7 +14,7 @@ jobs:
       - name: Git User Settings
         run: |
           git config --global user.email "qkstjr09@gmail.com"
-          git config --global user.name "Jake Park"
+          git config --global user.name "jpark6"
       - name: Dependencies
         run: yarn install
         
