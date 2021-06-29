@@ -1,0 +1,159 @@
+---
+title: 'Gatsby 블로그 자동 배포(auto deploy)'
+slug: '/Gatsby/Gatsby 블로그 자동 배포'
+date: '2021-06-29'
+thumbnail: 'https://blog.kakaocdn.net/dn/bGUgNX/btqGe8x4gzj/cCp2It5cCt9MZam3VMV3nk/img.png'
+mainOrder: 0
+postOrder: 2
+---
+
+import gatsbyDeployToMain from '../../images/gatsby/gatsby_deploy_to_main.png'
+import gatsbyDeploySelectGhpages from '../../images/gatsby/gatsby_deploy_select_ghpages.png'
+import gatsbyGithubAction1 from '../../images/gatsby/gatsby_github_action1.png'
+import gatsbyGithubSettings from '../../images/gatsby/gatsby_github_settings.png'
+import gatsbyGithubDeveloperSettings from '../../images/gatsby/gatsby_github_settings_developer_settings.png'
+import gatsbyGithubGetPAT1 from '../../images/gatsby/gatsby_github_get_pat1.png'
+import gatsbyGithubGetPAT2 from '../../images/gatsby/gatsby_github_get_pat2.png'
+import gatsbyGithubGetPAT3 from '../../images/gatsby/gatsby_github_get_pat3.png'
+import gatsbyGithubGetPAT4 from '../../images/gatsby/gatsby_github_get_pat4.png'
+import gatsbyGithubGetPAT5 from '../../images/gatsby/gatsby_github_get_pat5.png'
+import gatsbyGithubDeployYml from '../../images/gatsby/gatsby_github_deploy_yml.png'
+import gatsbyGithubAutoDeploy from '../../images/gatsby/gatsby_github_auto_deploy.png'
+
+## 기존 배포 방식  
+### 수동 배포
+- 소스코드를 수정하고 commit & push 후,  
+  배포 명령어(`yarn run deploy`)를 입력하여 반영.  
+<br />
+
+### branches
+ - main 브랜치 : 개발
+ - gh-pages 브랜치 : 배포
+
+<br />
+
+### gh-pages 브랜치 사용 이유
+- main 브랜치에서 개발하고 main 브랜치에 배포시, 소스코드가 날라가고 배포된 소스로 덮어씌워짐.
+<img src={gatsbyDeployToMain} alt="gatsby Main Branch에 배포" />  
+
+<br />
+
+- develop 브랜치를 만들어서 개발하고 main에 배포할까 생각도 해봤지만 main을 배포용 브랜치로 쓰는 것은 이상함.  
+  - github repository에 들어오면 기본으로 보이는게 main 브랜치인데 배포된 파일보다는 소스코드가 있으면 좋겠음.  
+
+- main 브랜치에서 개발하고 gh-pages 브랜치에 배포하기로 결정함.
+
+<br />
+
+### 설정
+#### gh-pages 브랜치 생성  
+- git 브랜치 생성 명령어  
+  ```shell{1}
+  git branch gh-pages
+  ```
+
+<br />
+
+#### ⚙️ github 저장소 설정 변경.
+- Github 저장소 > Repository > settings > Pages > gh-pages 브랜치 선택
+<img src={gatsbyDeploySelectGhpages} alt="Github 저장소 배포 브랜치 설정 " />
+
+<br />
+
+#### package.json 설정
+ - script 수정(-b gh-pages : gh-pages 브랜치에 deploy함.)
+  ```json{1-5}
+  "scripts": {
+    ...,
+    "deploy": "gatsby build && gh-pages -d public -b gh-pages",
+    ...
+  },
+  ```
+
+<br />
+
+#### 배포 명령어 실행  
+- npm
+```shell{1}
+npm run deploy
+  ```
+
+- yarn
+```shell{1}
+  yarn run deploy
+  ```
+
+<br />
+
+### 😭 문제점
+- git push/commit 과 상관없이 배포 명령어를 실행해야만 실제 사이트에 반영됨.  
+- push/commit 하지 않고 파일만 변경하고 배포 명령어 입력해도 반영됨...  
+  - Github 저장소와 배포된 사이트가 sync가 안맞을 수도 있음.
+
+<br />
+
+## 자동 배포 적용  
+### Github Actions
+- Github 저장소에 push가 되는 것을 감지하여 push 시, 자동 배포  
+
+<br />
+
+### 설정  
+#### Github 저장소 Personal access Token 발급  
+- 우측 상단 계정 아이콘 > `Settings` 클릭
+<img src={gatsbyGithubSettings} alt="Github Settings" />
+
+- 좌측 중간 Developer settings 메뉴 선택
+<img src={gatsbyGithubDeveloperSettings} alt="Github Developer Settings" />
+
+- Personal access tokens > `Generate new token` 버튼 클릭  
+<img src={gatsbyGithubGetPAT1} alt="Github get PAT1" />
+
+- token 명 입력 후, repo 체크박스 선택, 하단 `Generate token` 클릭  
+<img src={gatsbyGithubGetPAT2} alt="Github get PAT2" />
+
+- 토큰 key 복사  
+<img src={gatsbyGithubGetPAT3} alt="Github get PAT3" />
+
+- Github 저장소 > Repository > Settings > Secrets > `New Repository Secret` 클릭
+<img src={gatsbyGithubGetPAT4} alt="Github get PAT4" />
+
+- Name: ACCESS_TOKEN, Value: 복사한 토큰 Key값 붙여넣기, `Add secret` 버튼 클릭
+<img src={gatsbyGithubGetPAT5} alt="Github get PAT5" />
+
+#### Github 저장소 Actions workflow 추가  
+- Github 저장소 > Repository > Actions > `set up a workflow yourself →` 클릭  
+<img src={gatsbyGithubAction1} alt="Action workflow 추가"/>
+
+- deploy.yml 작성  
+<img src={gatsbyGithubDeployYml} alt="deploy.yml 작성"/>
+
+  ```yaml{1-19}
+  
+  name: Auto Deploy Project When Push Main Branch
+    on:
+      push:
+        branches:
+          - main
+
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Deploy
+        uses: enriikke/gatsby-gh-pages-action@v2
+        with:
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          deploy-branch: gh-pages
+  ```
+
+
+- 저장 후 자동 배포 확인
+<img src={gatsbyGithubAutoDeploy} alt="github 자동 배포" />
+
+### 😎 장점
+- git push를 하면 바로 반영이 되어 따로 배포 명령어를 입력하지 않아도 됨.
+- github 저장소에 저장된 소스와 배포된 사이트의 sync가 맞음.
