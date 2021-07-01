@@ -464,6 +464,7 @@ div.beforeLoadPage
     border-radius: 0
     padding: 0 25px
     font-weight: 600
+    transition: all ease-in-out .3s
     &:focus
       outline: none
       box-shadow: rgba(98, 198, 198, 0.52) 0 5px 8px 1px
@@ -474,7 +475,7 @@ div.beforeLoadPage
       height: 20px
       position: absolute
       left: calc(2rem + 5px)
-      top: 16px
+      top: 14px
       color: #7d7d7d
   button
     width: 20px
@@ -514,7 +515,9 @@ div.beforeLoadPage
   background-color: #f8f8f8
   width: calc(100% - 60px)
   max-width: 700px
-  max-height: 425px
+  height: 425px
+  max-height: calc(100vh - 40px)
+  
   overflow-y: auto
   box-shadow: rgba(87, 85, 89, 0.52) 0 5px 15px 1px
   border-left: 3px solid #1ac5be
