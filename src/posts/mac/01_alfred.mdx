@@ -17,13 +17,18 @@ import alfredCustomWebSearch from "../../images/mac/alfred_custom_web_search.png
 import alfredAddCustomSearch from "../../images/mac/alfred_add_custom_search.png"
 import alfredSearchNm from "../../images/mac/alfred_search_nm.png"
 import alfredSearchNmResult from "../../images/mac/alfred_search_nm_result.png"
+import alfredAddCustomCoupang from "../../images/mac/alfred_add_custom_coupang.png"
+import alfredSearchCp from "../../images/mac/alfred_search_cp.png"
+import alfredSearchCpResult from "../../images/mac/alfred_search_cp_result.png"
 import alfredShutDown from "../../images/mac/alfred_shutdown.png"
 import alfredRestart from "../../images/mac/alfred_restart.png"
 import alfredQuitAll from "../../images/mac/alfred_quitall.png"
 
 ## 🎬  소개
 - 맥에서 사용할 수 있는 데스크탑 검색 프로그램이다.  
-- 기본앱인 `Spotlight` 보다 조금 더 많은 기능을 제공한다.
+- 기본앱인 `Spotlight` 보다 조금 더 많은 기능을 제공한다.  
+
+<br />
 
 ## 🏠  Homepage
 <img src={alfredHomepage} alt="alfred homepage" /> <br />
@@ -46,56 +51,68 @@ import alfredQuitAll from "../../images/mac/alfred_quitall.png"
 <img src={alfredInit} alt="alfred init" /> <br />
 <br />
 
-## 🔍  파일 및 어플리케이션 검색
+## 🔍  어플리케이션 및 검색
 ### 어플리케이션 검색
-<img src={alfredSearchApp} alt="alfred search app" /> <br />  
+- 런치패드를 열고 어플리케이션 아이콘이 어디있는지 찾아서 클릭해서 여는게 귀찮다.  
+- alfred에서 어플리케이션명을 입력해서 바로 열자.  
+<img src={alfredSearchApp} alt="alfred search app" />
+<br />  
 
 - `어플리케이션명`을 입력하면 검색 결과가 나오고 클릭 또는 `Enter` 입력시 실행된다.  
 
 <br />
 
-### 파일 검색
+### 파일명 검색  
+- 파일이 어느 폴더에 저장되어있는지 기억이 안나 이 폴더 열어봤다가 저 폴더 열어봤다가 하는 것은 시간낭비이다.  
+  - windows에서는 <a href="https://www.voidtools.com/ko-kr/" target="everything">Everything</a>을 사용하면 된다.
+- alfred 파일명 검색을 통해 파일을 바로 열어보자.  
 <img src={alfredSearchFile} alt="alfred search file" />  
 
 - `파일명`을 입력하면 검색 결과가 나오고 클릭 또는 `Enter` 입력시 파일이 열린다.
 
-<img src={alfredFindFile} alt="alfred find file" />  
+<br />
 
+### 파일이 저장된 폴더 열기
 - find `파일명`을 입력하면 검색 결과가 나오고 클릭 또는 `Enter` 입력시 파일이 저장되어있는 폴더가 열린다.
 
-<img src={alfredFindFileEnter} alt="alfred find file enter" /> <br />  
+<img src={alfredFindFile} alt="alfred find file" />
+<img src={alfredFindFileEnter} alt="alfred find file enter" />
+<br />  
 
 <br />
 
 ## 🖥  웹 검색
 ### url 입력
 
-<img src={alfredSearchUrl} alt="alfred search url" /> <br />  
-
 - `url`을 입력하면 브라우저에 해당 `url`이 열린다.
+<img src={alfredSearchUrl} alt="alfred search url" />  
+
+<br />
 
 ### Custom Web Search  
+- Alfred의 환경설정을 통해 설치시 등록되어 있는 검색어 수정 및 커스텀 검색어 추가가 가능하다.
+<img src={alfredCustomWebSearch} alt="alfred custom web search" />
 
-
-<img src={alfredCustomWebSearch} alt="alfred custom web search" /> <br />  
-
-- Alfred의 환경설정을 통해 검색어 Custom이 가능하다.
 <br />
 
 #### google검색
 - g `검색어` (기본설정은 google `검색어` 이지만 길어서 바꿈)
 #### youtube검색
 -  y `검색어` (기본설정은 youtube `검색어` 이지만 길어서 바꿈)
-
+#### 구글 번역기
+- tr `번역할 내용` (기본설정은 translate`번역할 내용`이지만 길어서 바꿈)  
 <br />
 
 - 이런식으로 기존의 설정을 변경하거나
-- NaverMap 검색: nm `검색어` (네이버 길찾기) 이런식으로 등록이 가능하다.
+- NaverMap 검색: nm `검색어` (네이버 길찾기)  
+  Coupang 검색: cp `어머! 이건 사야돼` (쿠팡 로켓 충동구매)   
+  이런식으로 추가 등록이 가능하다.
 
 <br />
 
-#### Custom Web Search 등록  
-- 네이버 길찾기를 등록해보자
+### Custom Web Search 등록  
+#### 네이버 길찾기
+- 네이버 길 찾기를 등록해보자
 - 환경설정 > Features > Web Search 메뉴를 선택
 - 우측 하단 `Add Custom Search` 버튼 클릭
 
@@ -111,8 +128,27 @@ import alfredQuitAll from "../../images/mac/alfred_quitall.png"
 <br />
 <img src={alfredSearchNmResult} alt="alfred search naver map result" />
 
-- 검색이 잘 되는 것을 확인하 수 있다.
-- 이와 비슷하게 네이버, 다음, 카카오맵, 번역기, 사전, 쿠팡, 티몬 등등 의 웹사이트 검색기능을 추가할 수 있다.
+- 네이버 길찾기 검색이 잘 되는 것을 확인하 수 있다.
+
+<br />
+
+#### 쿠팡 검색
+- 쿠팡 검색도 등록해보자  
+<img src={alfredAddCustomCoupang} alt="alfred add coustom search coupang" />
+<br />
+
+- Search URL: https://www.coupang.com/np/search?component=&q={query}&channel=user  
+- Title : Search Coupang for '\{query\}'  
+- Keyword: cp  
+- 이미지는 넣지 않아도 되지만 구글링해서 다운로드 받은 쿠팡 아이콘을 넣었다.
+- 이렇게 저장을 하고 빠르게 충동구매을 해보자.
+
+<img src={alfredSearchCp} alt="alfred search coupang map" />
+<img src={alfredSearchCpResult} alt="alfred search coupang map result" />
+
+- 다음에 로또 당첨되면 사자.
+
+- 이와 비슷하게 네이버(+쇼핑), 다음, 카카오맵, 사전, 티몬, 위메프, 지마켓, 11번가, SSG 등의 웹사이트 검색기능을 추가할 수 있다.
 
 <br />
 
@@ -134,7 +170,7 @@ import alfredQuitAll from "../../images/mac/alfred_quitall.png"
   - M1X인지 M2인지 암튼 존버중이다.
 - 별로 하는게 없는 것 같은데 확인해보니 열어놓은 어플리케이션이 꽤 많다.  
 - 다 닫고 필요한 것만 다시 열자.  
-- `quitAll` 
+- `quitall` 
 
 <img src={alfredQuitAll} alt="alfred quitAll"/>
 <br />
