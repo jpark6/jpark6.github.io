@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {
-  Avatar,
   Card,
   CardContent,
   CardHeader,
   CardMedia,
 } from "@material-ui/core";
-import {goPost, formatDate} from "../script/common"
+import {formatDate} from "../script/common"
+import { Link } from "gatsby"
 
 interface BlogCardProps {
   node:{
@@ -30,20 +30,22 @@ interface BlogCardProps {
  */
 export default function BlogCard({ node }: BlogCardProps){
   return (
-    <Card onClick={() => goPost(node.frontmatter.slug)}>
-      <CardHeader
-        title={node.frontmatter.title}
-        subheader={formatDate(node.frontmatter.date)}
-      />
-      <CardMedia
-        component="img"
-        image={node.frontmatter.thumbnail}
-        alt={node.frontmatter.title}
-        title={node.frontmatter.title}
-      />
-      <CardContent>
-        {node.excerpt}
-      </CardContent>
-    </Card>
+    <Link to={node.frontmatter.slug}> 
+      <Card>
+        <CardHeader
+          title={node.frontmatter.title}
+          subheader={formatDate(node.frontmatter.date)}
+        />
+        <CardMedia
+          component="img"
+          image={node.frontmatter.thumbnail}
+          alt={node.frontmatter.title}
+          title={node.frontmatter.title}
+        />
+        <CardContent>
+          {node.excerpt}
+        </CardContent>
+      </Card>
+    </Link>
   )
 }

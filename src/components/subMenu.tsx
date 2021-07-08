@@ -1,7 +1,7 @@
 import * as React from "react"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
-import { navigate } from "gatsby";
+import { Link } from "gatsby";
 
 interface SubMenuProps {
   elem: { key: string; value: string;}
@@ -11,13 +11,14 @@ interface SubMenuProps {
 export default function SubMenu({elem, slug}: SubMenuProps) {
   return (
     <>
+    <Link to={elem.value}>
       <ListItem>
-        <ListItemText
-          primary={elem.key}
-          className={!!slug && elem.key === slug.split('/')[2] ? 'selectedSubMenu': ''}
-          onClick={()=>navigate(elem.value)}
-        />
+          <ListItemText
+            primary={elem.key}
+            className={!!slug && elem.key === slug.split('/')[2] ? 'selectedSubMenu': ''}
+          />
       </ListItem>
+    </Link>
     </>
   )
 }
