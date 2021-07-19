@@ -596,8 +596,8 @@ section
         padding: 0 10px
         background-color: white
         box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132),0 0.3px 0.9px 0 rgba(0,0,0,0.108)
-        .utterances
-          max-width: 100%
+        iframe:not([src])
+          display: none
       .indexContainer
         padding: 20px 0 0 10px
     aside
@@ -686,6 +686,7 @@ section
       -webkit-box-orient: vertical
       display: -webkit-box
       font-size: .88rem
+
 @media only screen and (max-width: 960px)
   .sidebar
     .sidebarDiv
