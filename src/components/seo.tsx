@@ -6,6 +6,7 @@
  */
 
 import * as React from "react"
+// @ts-ignore
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -17,11 +18,11 @@ interface SeoProps {
 }
 
 interface SiteQueryProps {
-  site: {
-    siteMetadata: {
-      title: string
-      description: string
-      author: string
+  site?: {
+    siteMetadata?: {
+      title?: string
+      description?: string
+      author?: string
     }
   }
 }
@@ -41,8 +42,8 @@ function Seo({ description, lang, meta, title }: SeoProps) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const metaDescription = description || site?.siteMetadata?.description
+  const defaultTitle = site?.siteMetadata?.title
 
   return (
     <Helmet
@@ -74,7 +75,7 @@ function Seo({ description, lang, meta, title }: SeoProps) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
+          content: site?.siteMetadata?.author || ``,
         },
         {
           name: `twitter:title`,
