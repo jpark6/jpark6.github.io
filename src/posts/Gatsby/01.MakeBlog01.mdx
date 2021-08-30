@@ -1,0 +1,119 @@
+---
+title: 'Gatsby 블로그 만들기'
+slug: '/Gatsby/Gatsby 블로그 만들기'
+date: '2021-06-12'
+thumbnail: 'https://ichi.pro/assets/images/max/724/1*SQdK1oLDvGecynYvKDKzzQ.png'
+mainOrder: 0
+postOrder: 0
+---
+
+import { StaticImage } from "gatsby-plugin-image"
+import gatsbyCreateGitRepoImg from "../../images/gatsby/gatsby_create_git_repo.png"
+import gatsbyGitRepoImg from "../../images/gatsby/gatsby_git_repo.png"
+import gatsbyDefaultStarter from "../../images/gatsby/gatsby_default_starter.png"
+import gatsbyDeploySuccess from "../../images/gatsby/gatsby_deploy_success.png"
+
+<img
+  src="https://ichi.pro/assets/images/max/724/1*SQdK1oLDvGecynYvKDKzzQ.png"
+  alt="gatsby logo"
+  width={500}
+/>
+
+## 정적 웹사이트 생성기
+개인블로그를 만들기 위해 검색을 해보다 정적웹사이트 생성기인 gatsby를 알게 되었다.  
+정적 웹사이트 생성기(SSG, Static Site Generator)는  
+HTML, CSS, JavaScript로 구성된 정적 페이지 사이트를 만들어주는 도구이다.
+<a
+  href="https://blog.outsider.ne.kr/1426"
+  target="SSG"
+>
+  [정적 사이트 생성기 Gatsby]
+</a>
+블로그의 글을 읽으며 어느정도 개념을 파악할 수 있었다.  <br />
+Jekyll, Hugo 등 여러가지 정적 웹사이트 생성기가 있지만  <br />
+React를 사용할 수 있는 Gatsby를 사용하여 블로그를 개발할 것이다.
+
+<br />
+<br />  
+
+## 사용한 skill / plugin / tools  
+  |이름|링크|설명|
+  |---|---|---|
+  |gatsby|<a href="https://www.gatsbyjs.com/" target="gatsbyjs" >[Gatsby 사이트]</a>|정적 사이트 생성기|
+  |typescript|<a href="https://www.typescriptlang.org/" target="typescript">[TypeScript 사이트]</a>|TypeScript|
+  |mdx|<a href="https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/" target="mdxplugin">[Gatsby Mdx 플러그인]</a>|markdown에 React 컴포넌트를 사용|
+  |github|<a href="https://github.com/jpark6/jpark6.github.io" target="github" > [github Repo] </a>|형상 관리 및 배포(gh-pages)|
+  |GraphQL|<a href="https://www.gatsbyjs.com/docs/graphql/" target="graphql">[Gatsby Graphql 플러그인]</a>|markdown파일 graphQL query로 읽어옴|
+  |WebStorm|<a href="https://www.jetbrains.com/webstorm/" target="webstorm">[WebStorm]</a>|IDE|
+
+
+## gatsby 설치
+  - 홈 디렉토리 이동 후 프로젝트 디렉토리 생성.
+  ```shell{1-3}
+    cd ~
+    mkdir WebstormProjects
+    cd WebstormProjects
+  ```
+<br />
+  
+## npm 설치
+  - gatsby-cli global 설치
+  ```shell{1}
+    npm install -g gatsby-cli
+  ```
+<br />
+
+## 신규 gatsby 프로젝트 생성
+- <a href="https://www.gatsbyjs.com/starters?" target="gatsby_starter">[gatsby starter]</a>에서 맘에드는 starter(템플릿)를 설치할 수 있다.
+- 따로 starter를 지정하지 않을 경우에는 gatsby-starter-default로 만들어진다. 
+  ```shell{1}
+    gatsby new jpark6.github.io
+  ```
+<br />
+  
+## repository 생성.
+<br />
+- github에 접속하여 repository를 생성한다.
+- 자신의 github ID + .github.io 이름으로 repository를 생성하면  
+  [github ID].github.io url에 project를 배포할 수 있다.  
+  <br />
+  <img src={gatsbyCreateGitRepoImg} alt="gatsby git 저장소 생성" />  
+  <img src={gatsbyGitRepoImg} alt="gatsby git 저장소 생성" style="width:700px"/>  
+  <br />
+
+## gatsby 프로젝트 github 연결
+  - 로컬에 생성한 gatsby 프로젝트를 github repository에 push. 
+  ```shell{1-5}
+    git init
+    git commit -m "commit message"
+    git branch -M main
+    git remote add origin https://github.com/jpark6/jpark6.github.io
+    git push -u origin main
+  ```
+<br />
+
+## gatsby 배포
+  - 배포를 위해 gh-pages 브랜치를 만든다.  
+  - main branch에 배포를 할경우, 소스코드가 날라가고 빌드된 파일만 남기때문에 배포용 브랜치를 따로 만든다.  
+  ```shell{1}
+    git branch gh-pages
+  ```
+<br />
+  - package.json에 배포 명령어 추가
+  ```shell{1,100}
+    "scripts": {
+      ...
+      "deploy": "gatsby build && gh-pages -d public -b gh-pages"
+    },
+  ```
+  - 배포 명령어 실행.
+  ```shell{1}
+    npm run deploy
+  ```
+  <br />
+  - deploy success  <br/>
+  <img src={gatsbyDeploySuccess} alt="gatsby 배포 성공" />
+  <br />
+  - 배포를 하고 jpark6.github.io에 접속하면 아래와 같은 gatsby-default-starter 페이지가 나온다.  
+  <img src={gatsbyDefaultStarter} alt="gatsby default starter" />
+  <br />

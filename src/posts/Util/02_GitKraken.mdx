@@ -1,0 +1,82 @@
+---
+title: "GitKraken"
+slug: "/Util/GitKraken/"
+date: "2021-06-24T11:45:00.000Z"
+thumbnail: https://1v5ymx3zt3y73fq5gy23rtnc-wpengine.netdna-ssl.com/wp-content/uploads/2021/03/og-git-client.png
+mainOrder: 2
+postOrder: 1
+---
+
+import gitKrakenLoading from "../../images/util/gitkraken_loading.gif"
+import gitKrakenMain from "../../images/util/gitkraken_main.png"
+import gitKrakenAccount1 from "../../images/util/gitkraken_account1.png"
+import gitKrakenAccount2 from "../../images/util/gitkraken_account2.png"
+import gitKrakenGitDiff from "../../images/util/gitkraken_gitdiff.png"
+import gitKrakenGUIDiff from "../../images/util/gitkraken_guidiff.png"
+import gitKrakenRepo from "../../images/util/gitkraken_repo.png"
+import gitKrakenRepoMain from "../../images/util/gitkraken_repo_main.png"
+import gitKrakenSettingLight from "../../images/util/gitkraken_setting_light.png"
+import gitKrakenRepoMainLight from "../../images/util/gitkraken_repo_main_light.png"
+
+## 🎬  소개
+- Mac, Window, Linux에서 사용할 수 있는 Git GUI 툴이다.
+- <a href="https://www.electronjs.org/" target="_electron">Electron</a>으로 만들어진 앱이다.
+- 사용해본 다른 Git GUI 툴로는 <a href="https://desktop.github.com/" target="_githubdesktop">Github Desktop</a>과 <a href="https://www.sourcetreeapp.com/" target="_sourcetree">Source Tree</a>, <a href="https://git-fork.com/" target="_fork">Fork</a>가 있다.
+- GitKraken을 사용하는 이유는 이름이 멋있고 UI가 깔끔해서이다.
+
+<br />
+
+## ❓ 사용 이유
+- terminal에서 commit, push, pull 등의 명령어를 사용하는 것은 별로 불편함이 없다.
+- 그러나 여러 파일의 변경사항을 볼 때와, commit 내역을 볼 때는 GUI 프로그램이 더 편하다.
+- terminal에서 `git diff` 명령어 입력 하면 여러 파일들의 변경사항이 세로로 스크롤되서 나온다.  
+- 특정 파일들만 stage하기 위해서는 `git add [디렉토리명]/[파일명]`을 일일히 입력해줘야 한다.  
+<img src={gitKrakenGitDiff} alt="git diff" />  
+- git GUI 툴에서는 파일별로 변경사항을 볼 수 있고, 파일별로 stage를 할 수 있다.
+  <img src={gitKrakenGUIDiff} alt="gui diff" />  
+
+
+## 🏠  Homepage 
+![GitKraken](https://1v5ymx3zt3y73fq5gy23rtnc-wpengine.netdna-ssl.com/wp-content/uploads/2021/03/og-git-client.png)  
+
+> <a href="https://www.gitkraken.com/" target="_gitkraken">GitKraken Homepage</a>  <br />
+
+<br />
+
+## 🚘  설치방법  
+- 위의 홈페이지에서 다운로드 받을 수 있다.  
+- HomeBrew를 사용할 경우
+  ```shell{1}
+  brew install gitkraken
+  ```
+<br />
+
+## 로딩화면
+  - 귀여운 ~~괴수 크라켄~~문어 로딩화면이 나온다.  
+  <img src={gitKrakenLoading} alt="GitKraken Loading" />
+
+## 메인화면 
+  - repository 열기 / 클론, GitHub, GitLab,Bitbucket, Azure DevOps를 연동할 수 있다.
+  <img src={gitKrakenMain} alt="GitKraken Main" />
+
+## 계정 등록
+  - 나는 github 계정을 등록해놨다. 추가 계정 등록도 가능하다.
+  <img src={gitKrakenAccount1} alt="GitKraken Account1" />
+  <img src={gitKrakenAccount2} alt="GitKraken Account2" />
+
+<br />
+
+## Repository 등록  
+- local Repository인 jpark6.github.io를 등록했다.
+  <img src={gitKrakenRepo} alt="GitKraken Repo" />
+
+## Repository 메인 화면
+- commit 내역과 Unstaged File들을 볼 수 있다.
+  <img src={gitKrakenRepoMain} alt="GitKraken RepoMain" />
+
+## Light Theme
+- 기본은 Dark Theme이지만 Light Theme로 변경이 가능하다.
+- Preferences(맥 단축키: `⌘ + ,`) > UI Customization > Theme에서 Light와 Dark를 선택할 수 있다.
+  <img src={gitKrakenSettingLight} alt="GitKraken Setting Light" />  
+  <img src={gitKrakenRepoMainLight} alt="GitKraken RepoMain Light" />  
+  

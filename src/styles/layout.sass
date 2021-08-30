@@ -1,0 +1,743 @@
+@font-face
+  font-family: "Cascadia Mono PL"
+  src: url("../fonts/CascadiaMonoPL.ttf")
+  unicode-range: U+0041-005A, U+0061-007A
+@font-face
+  font-family: "Nanum Square Round"
+  font-weight: 100
+  src: url("../fonts/NanumSquareRoundOTFR.otf")
+@font-face
+  font-family: "Nanum Square Round"
+  font-weight: 300
+  src: url("../fonts/NanumSquareRoundOTFB.otf")
+@font-face
+  font-family: "Nanum Square Round"
+  font-weight: 600
+  src: url("../fonts/NanumSquareRoundOTFEB.otf")
+html
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+  box-sizing: border-box
+  overflow-y: hidden
+  height: 100%
+
+body
+  margin: 0
+  height: 100%
+  line-height: 1.7
+  background-color: #f8f8f8
+  overflow-y: auto
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color: hsla(0, 0%, 0%, 0.8)
+  font-family: "Nanum Square Round", Monaco, georgia, serif
+  font-weight: normal
+  font-size: 1rem
+  word-wrap: break-word
+  font-kerning: normal
+  -moz-font-feature-settings: "kern", "liga", "clig", "calt"
+  -ms-font-feature-settings: "kern", "liga", "clig", "calt"
+  -webkit-font-feature-settings: "kern", "liga", "clig", "calt"
+  font-feature-settings: "kern", "liga", "clig", "calt"
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary
+  display: block
+
+audio, canvas, progress, video
+  display: inline-block
+
+audio:not([controls])
+  display: none
+  height: 0
+
+progress
+  vertical-align: baseline
+
+[hidden], template
+  display: none
+
+a
+  background-color: transparent
+  text-decoration: none
+
+  &:active, &:hover
+    outline-width: 0
+
+abbr[title]
+  border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5)
+  cursor: help
+  text-decoration: none
+
+b, strong
+  font-weight: bolder
+
+dfn
+  font-style: italic
+
+h1
+  padding: 0
+  margin: 0 0 1.45rem
+  color: inherit
+  font-weight: bold
+  text-rendering: optimizeLegibility
+  font-size: 2.25rem
+  line-height: 1.1
+
+mark
+  background-color: #ff0
+  color: #000
+
+small
+  font-size: 80%
+
+sub, sup
+  font-size: 75%
+  line-height: 0
+  position: relative
+  vertical-align: baseline
+
+sub
+  bottom: -0.25em
+
+sup
+  top: -0.5em
+
+img
+  border-style: none
+  max-width: 100%
+  padding: 0
+  margin: 0 0 1.45rem
+
+svg:not(:root)
+  overflow: hidden
+
+code, kbd, pre, samp
+  font-family: "Cascadia Mono PL", "Nanum Square Round", Monaco, monospace
+  font-size: 1.1em
+
+figure
+  padding: 0
+  margin: 0 0 1.45rem
+
+hr
+  box-sizing: content-box
+  overflow: visible
+  padding: 0
+  margin: 0 0 calc(1.45rem - 1px)
+  background: hsla(0, 0%, 0%, 0.2)
+  border: none
+  height: 1px
+
+button, input, optgroup, select, textarea
+  font: inherit
+  margin: 0
+
+optgroup
+  font-weight: 700
+
+button, input
+  overflow: visible
+
+button, select
+  text-transform: none
+
+[type="reset"], [type="submit"], button, html [type="button"]
+  -webkit-appearance: button
+
+[type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner, button::-moz-focus-inner
+  border-style: none
+  padding: 0
+
+[type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring, button:-moz-focusring
+  outline: 1px dotted ButtonText
+
+fieldset
+  border: 1px solid silver
+  padding: 0
+  margin: 0 0 1.45rem
+
+legend
+  box-sizing: border-box
+  color: inherit
+  display: table
+  max-width: 100%
+  padding: 0
+  white-space: normal
+
+textarea
+  overflow: auto
+
+[type="checkbox"], [type="radio"]
+  box-sizing: border-box
+  padding: 0
+
+[type="number"]
+  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
+    height: auto
+
+[type="search"]
+  -webkit-appearance: textfield
+  outline-offset: -2px
+
+  &::-webkit-search-cancel-button, &::-webkit-search-decoration
+    -webkit-appearance: none
+
+\::-webkit-input-placeholder
+  color: inherit
+  opacity: 0.54
+
+\::-webkit-file-upload-button
+  -webkit-appearance: button
+  font: inherit
+
+*
+  box-sizing: inherit
+
+  &:before, &:after
+    box-sizing: inherit
+
+h2
+  padding: 0
+  margin: 0 0 1.45rem
+  color: inherit
+  font-weight: bold
+  text-rendering: optimizeLegibility
+  font-size: 1.62671rem
+  line-height: 1.1
+
+h3
+  padding: 0
+  margin: 0 0 1.45rem
+  color: inherit
+  font-weight: bold
+  text-rendering: optimizeLegibility
+  font-size: 1.38316rem
+  line-height: 1.1
+
+h4
+  padding: 0
+  margin: 0 0 1.45rem
+  color: inherit
+  font-weight: bold
+  text-rendering: optimizeLegibility
+  font-size: 1rem
+  line-height: 1.1
+
+h5
+  padding: 0
+  margin: 0 0 1.45rem
+  color: inherit
+  font-weight: bold
+  text-rendering: optimizeLegibility
+  font-size: 0.85028rem
+  line-height: 1.1
+
+h6
+  padding: 0
+  margin: 0 0 1.45rem
+  color: inherit
+  font-weight: bold
+  text-rendering: optimizeLegibility
+  font-size: 0.78405rem
+  line-height: 1.1
+
+hgroup
+  padding: 0
+  margin: 0 0 1.45rem
+
+ul, ol
+  padding: 0
+  margin: 1rem 0 1.45rem 0
+  list-style-position: outside
+  list-style-image: none
+
+dl, dd, p
+  padding: 0
+  margin: 0 0 1.45rem
+  line-height: 1.7
+
+pre
+  margin: 0 0 1.45rem
+  font-size: 0.85rem
+  line-height: 1.42
+  background: hsla(0, 0%, 0%, 0.04)
+  border-radius: 3px
+  overflow: auto
+  word-wrap: normal
+  padding: 1.45rem
+
+table
+  padding: 0
+  margin: 0 0 1.45rem
+  font-size: 1rem
+  line-height: 1.45rem
+  border-collapse: collapse
+  width: 100%
+
+blockquote
+  margin: 0 0 1.45rem
+  padding: .3rem .7rem
+  border-left: 3px solid #1ac5be
+
+form, noscript, iframe, address
+  padding: 0
+  margin: 0 0 1.45rem
+
+b, strong, dt, th
+  font-weight: bold
+
+li
+  margin-bottom: calc(1.45rem / 2)
+
+ol li, ul li
+  padding-left: 0
+
+blockquote *:last-child, li *:last-child, p *:last-child
+  margin-bottom: 0
+
+li > p
+  margin-bottom: calc(1.45rem / 2)
+
+code, kbd, samp
+  font-size: 0.85rem
+  line-height: 1.45rem
+
+abbr, acronym
+  border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5)
+  cursor: help
+
+thead
+  text-align: left
+
+td
+  text-align: left
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.12)
+  font-feature-settings: "tnum"
+  -moz-font-feature-settings: "tnum"
+  -ms-font-feature-settings: "tnum"
+  -webkit-font-feature-settings: "tnum"
+  padding: 0.725rem 0.96667rem calc(0.725rem - 1px)
+
+th
+  text-align: left
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.12)
+  font-feature-settings: "tnum"
+  -moz-font-feature-settings: "tnum"
+  -ms-font-feature-settings: "tnum"
+  -webkit-font-feature-settings: "tnum"
+  padding: 0.725rem 0.96667rem calc(0.725rem - 1px)
+
+  &:first-child
+    padding-left: 0
+
+td:first-child
+  padding-left: 0
+
+th:last-child, td:last-child
+  padding-right: 0
+
+tt, code
+  background-color: hsla(0, 0%, 0%, 0.04)
+  border-radius: 3px
+  font-family: "Cascadia Mono PL", "Nanum Square Round", Monaco, "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono", "Liberation Mono", Menlo, Courier, monospace
+  padding: 0.2em
+
+pre code
+  background: none
+  line-height: 1.42
+
+code
+  &:before, &:after
+    letter-spacing: -0.2em
+
+tt
+  &:before, &:after
+    letter-spacing: -0.2em
+    content: " "
+
+pre
+  code
+    &:before, &:after
+      content: ""
+
+  tt
+    &:before, &:after
+      content: ""
+
+/* page load 전 spinner */
+div.beforeLoadPage
+  position: fixed
+  width: 100%
+  height: 100%
+  z-index: 1201
+  background-color: #EEE
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: all linear 1s
+
+/* height 100% 설정 */
+#___gatsby
+  height: 100%
+  #gatsby-focus-wrapper
+    height: 100%
+    > main 
+      &:first-child
+        height: 100%
+        display: flex
+
+/* 사이드바 */
+.sidebar
+  min-width: 20rem
+  position: relative
+  .sidebarDiv
+    position: fixed
+    width: 320px
+    height: 100%
+    background-color: #1f1f1f
+    color: white
+    overflow-y: auto
+    .sidebar-title
+      height: 50px
+      display: flex
+      background-color: #1ac5be
+      justify-content: center
+      align-items: center
+      color: white
+      margin: 0
+    .hideSideBarBtn
+      position: absolute
+      top: 5px
+      right: 0
+      width: 40px
+      height: 40px
+      border-radius: 0
+      visibility: hidden
+      svg
+        width: 10px
+        color: white
+    a
+      color: white
+    .MuiTypography-body1
+      font-family: "Nanum Square Round", Monaco, georgia, serif
+      border-left: 3px solid #1f1f1f
+      text-overflow: ellipsis
+      overflow: hidden
+      padding: 5px
+      white-space: nowrap
+      font-size: .88rem
+    .MuiSvgIcon-root
+      color: #FFF
+    .MuiListItem-gutters
+      padding: 0 16px 0 0
+      margin: 0
+    .MuiListItemText-root
+      margin: 0
+      cursor: pointer
+    /* 선택된 메뉴 강조 */
+    .selectedMenu
+      .MuiTypography-body1
+        border-left: 3px solid #1ac5be
+        color: #1ac5be
+        font-weight: 600
+      svg
+        color: #1ac5be
+    .selectedSubMenu
+      .MuiTypography-body1
+        color: #1ac5be
+        font-weight: 600
+      .MuiSvgIcon-root
+        color: #1ac5be
+
+/* 검색창 */
+.searchBar
+  position: relative
+  height: 50px
+  padding: 10px 2rem
+  input
+    border: none
+    border-bottom: 2px solid #1ac5be
+    max-width: 700px
+    width: calc(100% - 90px)
+    height: 30px
+    float: left
+    box-sizing: border-box
+    background-color: transparent
+    border-radius: 0
+    padding: 0 25px
+    font-weight: 600
+    transition: all ease-in-out .3s
+    &:focus
+      outline: none
+      box-shadow: rgba(98, 198, 198, 0.52) 0 5px 8px 1px
+      + svg
+        color: #1ac5be
+    + svg
+      width: 20px
+      height: 20px
+      position: absolute
+      left: calc(2rem + 5px)
+      top: 14px
+      color: #7d7d7d
+  button
+    width: 20px
+    height: 20px
+    border: none
+    background-color: transparent
+    border-radius: 0
+    color: #727273
+    cursor: pointer
+    padding: 0
+    float: left
+    margin: 5px
+    transition: color linear .2s
+    &.til
+      font-size: 10px
+      font-weight: 600
+      color: white
+      background-color: #727273
+      border-radius: 1rem
+      padding-left: 1px
+      padding-top: 1px
+      margin: 8px 4px 0
+      width: 19px
+      height: 19px
+      &:hover
+        color: #f8f8f8
+        background-color: #1ac5be
+    &:hover
+      color: #1ac5be
+    svg
+      width: 20px!important
+      height: 20px
+/* 검색 결과 */
+.searchBox
+  position: absolute
+  z-index: 3
+  background-color: #f8f8f8
+  width: calc(100% - 60px)
+  max-width: 700px
+  height: 425px
+  max-height: calc(100vh - 40px)
+  
+  overflow-y: auto
+  box-shadow: rgba(87, 85, 89, 0.52) 0 5px 15px 1px
+  border-left: 3px solid #1ac5be
+  border-bottom-right-radius: .5rem
+  margin-top: 30px
+  .searchArticle
+    padding: 10px
+    &:not(&:last-child)
+      border-bottom: 1px solid #ccc
+    h2
+      font-size: 1.1rem
+      margin-bottom: 5px
+      cursor: pointer
+      &:hover
+        color: #1ac5be
+    p.searchDate
+      margin-bottom: 5px
+    div.searchContext
+      overflow: hidden
+      white-space: normal
+      line-height: 1.4
+      text-overflow: ellipsis
+      height: 4.2em
+      -webkit-line-clamp: 3
+      -webkit-box-orient: vertical
+      display: -webkit-box
+
+button.showSideBarBtn
+  width: 33px
+  height: 30px
+  position: fixed
+  bottom: 15px
+  left: 15px
+  margin: 0
+  background-color: #525252
+  border-radius: .2em
+  color: #fff
+  float: left
+  z-index: 1
+  &:hover
+    background-color: #000
+section
+  display: flex
+  flex-direction: column
+  height: 100%
+  max-width: 1200px
+  width: 100%
+  margin: auto
+  &.sidebarOpen
+    width: calc(100% - 320px)
+  .content
+    display: flex
+    padding: 0 2rem
+    .contentMain
+      width: calc(100% - 200px)
+      article
+        padding: 20px
+        background-color: white
+        box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132),0 0.3px 0.9px 0 rgba(0,0,0,0.108)
+        h1
+          font-size: 1.8rem
+        h2
+          font-size: 1.6rem
+        h3
+          font-size: 1.4rem
+        h4
+          font-size: 1.1rem
+        h5
+          font-size: .95rem
+        h6
+          font-size: .8rem
+      .contentReply
+        margin: 10px 0
+        padding: 0 10px
+        background-color: white
+        box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132),0 0.3px 0.9px 0 rgba(0,0,0,0.108)
+        iframe:not([src])
+          display: none
+      .indexContainer
+        padding: 20px 0 0 10px
+    aside
+      width: 200px
+      min-width: 200px
+      ul
+        &:first-child
+          position: sticky
+          border-left: 3px solid #1ac5be
+          padding-left: 5px
+          width: 200px
+          max-height: calc(100vh - 10px)
+          overflow-y: auto
+          top: 5px
+        margin-left: 10px
+        margin-top: .3rem
+        margin-bottom: 0
+        list-style: none
+        padding: 0
+        li
+          margin-bottom: .3rem
+          &:last-child
+            margin-bottom: 0
+        a
+          color: #727273
+          font-size: 14px
+          cursor: pointer
+          transition: all linear .3s
+          display: inline-block
+          &.selected
+            color: #1ac5be
+            text-decoration: underline
+            font-weight: 600
+          &:hover
+            color: #1ac5be
+  ol
+    padding-inline-start: 20px
+  ul
+    padding-inline-start: 20px
+  img
+    max-width: 100%
+  /* index card형 게시글 */
+
+  .MuiCard-root
+    width: 100%
+    cursor: pointer
+    border-radius: 0
+    box-shadow: 0 2px 1px 0 rgb(0 0 0 / 20%), 2px 2px 1px 0 rgb(0 0 0 / 14%), 0 1px 2px 1px rgb(0 0 0 / 12%)
+    transition: all cubic-bezier(1, 0, 0, 1.33) .5s
+    &:hover
+      transform: scale(1.03)
+      box-shadow: 0 2px 1px 0 rgb(0 0 0 / 50%), 1px 0px 5px 0px rgb(0 0 0 / 50%), 0px 1px 1px 0px rgb(0 0 0 / 50%)
+    &:last-child
+      margin-right: 0
+    .MuiCardHeader-root
+      padding: 10px
+    .MuiTypography-root
+      font-family: "Nanum Square Round", Monaco, serif
+    .MuiCardHeader-title
+      font-size: 1.1em
+    .MuiCardHeader-subheader
+      font-size: .8em
+    
+    > img /* card image */
+      height: 250px
+      border-top: 1px solid #e5e5e5
+      border-bottom: 1px solid #e5e5e5
+      margin-bottom: 0
+    .MuiCardHeader-content
+      width: calc(100% - 60px)
+      .MuiTypography-body2
+        font-family: "Nanum Square Round", Monaco, serif
+      span
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+    > .MuiCardContent-root /* card content */
+      padding: 0
+      margin: 10px
+      overflow: hidden
+      white-space: normal
+      line-height: 1.4
+      text-overflow: ellipsis
+      height: 4.2em
+      -webkit-line-clamp: 3
+      -webkit-box-orient: vertical
+      display: -webkit-box
+      font-size: .88rem
+
+@media only screen and (max-width: 960px)
+  .sidebar
+    .sidebarDiv
+      button.hideSideBarBtn
+        visibility: visible
+  section
+    .searchBar
+      padding: 10px 1rem
+      input
+        + svg
+          left: calc(1rem + 5px)
+    .content
+      padding: 0 1rem
+    &.sidebarClose
+      .content
+        .contentMain
+          width: calc(100% - 200px)
+      aside
+        display: block
+    &.sidebarOpen
+      .content
+        .contentMain
+          width: 100%
+    aside
+      display: none
+    
+@media only screen and (max-width: 650px)
+  html
+    font-size: 100%
+  .sidebar
+    min-width: 100%
+    .sidebarDiv
+      width: 100%
+  .searchBar
+    padding: 10px 1rem
+  section
+    .content
+      padding: 0 1rem
+      width: 100%
+    article
+      width: 100%
+    &.sidebarOpen
+      width: 100%
+    &.sidebarClose
+      .content
+        .contentMain
+          width: 100%
+      aside
+        display: none
+  button.showSideBarBtn
+    bottom: 15px
+    left: 15px
+    margin: 0
+ 

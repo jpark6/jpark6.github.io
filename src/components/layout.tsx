@@ -1,54 +1,67 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+import * as React from 'react'
+import Sidebar from "./sideBar"
+import SearchBar from "./searchBar"
+import { useState } from "react"
 
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-
-import Header from "./header"
-import "./layout.css"
-
-interface ChildrenProps {
+interface LayoutProps {
   children: React.ReactNode
+  slug?: string
 }
 
-const Layout = ({ children }: ChildrenProps) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
+export default function Layout({children, slug}: LayoutProps) {
+  const isMobile = (typeof window !== "undefined" && window.innerWidth < 650)
+  const [open, setOpen] = useState(!isMobile)
+  const handleDrawerOpen = () => setOpen(true)
+  const handleDrawerClose = () => setOpen(false)
+  
+  const scrollHandler = () => {
+    const toc = document.getElementsByTagName("aside")
+    if(!toc || toc.length < 0 || !toc[0] ||  !toc[0].style || toc[0].offsetWidth === 0) {
+      return;
+    }
+    
+    const anchor_holder = document.getElementsByClassName("anchor-header")
+    if(!anchor_holder || anchor_holder.length <= 0) {
+      return;
+    }
+    let selected_anchor = null
+    const anchor_holder_arr = Array.from(anchor_holder)
+    for(let a of anchor_holder_arr){
+      if(a.getBoundingClientRect().top > -30) {
+        selected_anchor = a.getAttribute("href")
+        break
       }
     }
-  `)
+    if(!selected_anchor) {
+      selected_anchor = anchor_holder_arr[anchor_holder_arr.length -1].getAttribute("href")
+    }
+    document.querySelectorAll("aside a.selected").forEach(a => {
+      a.classList.remove("selected");
+    })
+    if(selected_anchor) {
+      const toc_selected = document.querySelector("aside a[href='"+ decodeURIComponent(selected_anchor) +"']")
+      toc_selected && toc_selected.classList.add("selected")
+    }
+  }
+
+  typeof document !== "undefined" && document.body.addEventListener("scroll", scrollHandler)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
+    <main>
+      <Sidebar
+        open={open}
+        slug={slug}
+        handleDrawerOpen={handleDrawerOpen}
+        handleDrawerClose={handleDrawerClose}
+      />
+      <section
+        className={ open ? "sidebarOpen" : "sidebarClose"}
       >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
+        <SearchBar />
+        <div className="content">
+          {children}
+        </div>
+      </section>
+    </main>
   )
 }
-
-export default Layout

@@ -1,29 +1,79 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-
-import Layout from "../components/layout"
+import * as React from "react";
+import { graphql } from "gatsby";
+import Layout from "../components/layout";
+import BlogCard from "../components/blogCard";
+import { Grid } from "@material-ui/core";
+import Spinner from "../components/spinner";
 import Seo from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <Seo title="Home" lang="ko" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <StaticImage
-      src="../images/gatsby-astronaut.png"
-      width={300}
-      quality={95}
-      formats={["auto", "webp", "avif"]}
-      alt="A Gatsby astronaut"
-      style={{ marginBottom: `1.45rem` }}
-    />
-    <p>
-      <Link to="/page-2/">Go to page 2</Link> <br />
-      <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-    </p>
-  </Layout>
-)
+interface IndexPageProps {
+  data: {
+    allMdx: {
+      edges: [
+        {
+          node: {
+            id: string,
+            body: string,
+            frontmatter: {
+              title: string,
+              slug: string,
+              date: string,
+              thumbnail: string,
+            },
+            html: string,
+            excerpt: string,
+          }
+        }
+      ],
+      totalCount: number
+    }
+  }
+}
+/**
+ * @constructor
+ */
+export default function IndexPage({ data }: IndexPageProps){
 
-export default IndexPage
+  return (
+    <>
+      <Spinner />
+      <Layout>
+        <Seo title="" lang="ko"/>
+        <div className="indexContainer">
+          <h4>{data.allMdx.totalCount} Posts</h4>
+          <div className="cardContainer">
+            <Grid container spacing={1}>
+              {data.allMdx.edges.map(( { node} ) => (
+                <Grid item key={node.id} xs={12} sm={12} md={6} lg={4} xl={4}>
+                  <BlogCard node={node}/>
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        </div>
+      </Layout>
+    </>
+  )
+}
+export const query = graphql`
+query {
+  allMdx(
+    sort: {order: [DESC, DESC, DESC], fields: [frontmatter___date, frontmatter___mainOrder, frontmatter___postOrder]}
+  ) {
+    totalCount
+    edges {
+      node {
+        id
+        frontmatter {
+          slug
+          title
+          date
+          thumbnail
+        }
+        body
+        excerpt
+      }
+    }
+  }
+}
+`

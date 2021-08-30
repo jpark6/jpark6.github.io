@@ -1,0 +1,256 @@
+---
+title: 'Gatsby 블로그 TOC 구현'
+slug: '/Gatsby/Gatsby 블로그 TOC 구현'
+date: '2021-06-13'
+thumbnail: 'https://user-images.githubusercontent.com/3685876/56622781-72e22580-65ff-11e9-950f-e4628ce7628c.png'
+mainOrder: 0
+postOrder: 1
+---
+import gatsbyTOC from "../../images/gatsby/gatsby_TOC.png"
+import gatsbyTOCAutolinkHeaders from "../../images/gatsby/gatsby_TOC_autolink_headers.png"
+import gatsbyTOCItems from "../../images/gatsby/gatsby_TOC_items.png"
+import gatsbyTOCSassBefore from "../../images/gatsby/gatsby_TOC_sass_before.png"
+import gatsbyTOCSassAfter from "../../images/gatsby/gatsby_TOC_sass_after.png"
+
+## TOC(Table Of Contents)  
+- 블로그들을 보다보면 화면 우측에 본문에 header에 대한 링크가 있는 경우가 있다.  
+- 아래 스크린샷은 gatsby 홈페이지에 있는 Table of Contents 화면이다.  
+  <img src={gatsbyTOC} alt="gatsby TOC" />  
+- gatsby-remark-autolink-headers plugin을 사용하여 설정을 하겠다.
+
+## 플러그인 설치
+### gatsby-remark-autolink-pluin 설치
+- 
+  ```shell
+    npm install --save gatsby-remark-autolink-headers
+  ```
+
+### gatsby-config.js 파일 수정
+- 
+  ```shell
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          ...,
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              className: `anchor-header`,
+              maintainCase: false,
+              removeAccents: true,
+              elements: [`h2`, `h3`, `h4`], 
+            },
+          },
+        ],
+      },
+    },
+  ```
+<br />
+## heading Link 적용 확인
+- 아래와 같이 `  h2~h4` 태그에 링크가 생성된 것을 확인할 수 있다.
+  <img src={gatsbyTOCAutolinkHeaders} alt="headers autolink" style="border: 1px solid #ccc" />
+<br />
+
+## TOC 만들기  
+### post-template.tsx
+#### graphQL 쿼리 tableOfContents 추가
+- 
+  ```typescript
+  export const query = graphql`
+    query($slug: String!) {
+      mdx(frontmatter: { slug: { eq: $slug } }) {
+        body
+        frontmatter {
+          title
+          date
+          slug
+        }
+        excerpt(pruneLength: 250)
+        tableOfContents
+      }
+    }
+  `
+  ```
+  <br />
+
+#### tableOfContents Object 확인
+- 
+  ```typescript
+    export default function PostLayout({path, data}: PostLayoutProps) {
+    ...
+    console.log(data.mdx.tableOfContents)
+    ...
+  ```  
+  <img src={gatsbyTOCItems} alt="gatsby toc items" />
+  <br />
+
+  - `items`배열의 `Object`들은 `title`과 `url`이 있고 `items` 배열이 있을 수 있음.  
+  - `Item` interface를 만들어 `items` optional 선언해서 사용.
+  <br />
+
+#### interface 추가 및 수정
+- `item` interface 추가 및 `PostLayoutProps` interface에 tableOfContent 추가
+  ```typescript
+  interface Item {
+    url: string
+    title: string
+    items?: Item[]
+  }
+  interface PostLayoutProps {
+    path: string
+    data: {
+      mdx: {
+        frontmatter: {
+          title: string
+          date: string
+          slug: string
+        }
+        body: string
+        excerpt: string
+        tableOfContents: {items: Item[] | undefined}
+      }
+    }
+  }
+  ```
+  <br />
+
+#### TOC 컴포넌트 추가
+- return 문 Toc 태그 추가
+  ```typescript
+  return (
+    <Layout slug={data.mdx.frontmatter.slug}>
+      ...
+      <article>
+      ...
+      </article>
+      <Toc toc={data.mdx.tableOfContents}/>
+      <Utterance repo='jpark6/jpark6.github.io' theme='github-light' />
+    </Layout>
+  )
+  ```
+  <br />
+### toc.tsx 파일 생성
+  - /src/components/toc.tsx
+  - items 안에 items안에 items(h2>h3>h4)가 있을수 있으므로  
+  - items 안에 items가 있을경우 TocElement 재귀 호출  
+  ```typescript
+    import * as React from 'react'
+    interface Item {
+      url: string
+      title: string
+      items?: Item[]
+    }
+    interface TocProps {
+      toc: {
+        items?: Item[]
+      }
+    }
+    export default function Toc({toc}:TocProps) {
+      return (
+        <aside>
+          <TocElement toc={toc} />
+        </aside>
+      )
+    }
+    const TocElement = ({toc}:TocProps) =>  (
+      <ul>
+        {
+          toc.items && toc.items.map(item => (
+            <li key={item.title}>
+              <a href={item.url}>{item.title}</a>
+              {item.items && <TocElement toc={item} />}
+            </li>
+          ))
+        }
+      </ul>
+    )
+  ```
+  <br />
+
+## 적용화면
+### css 적용전
+  - 정상적으로 화면에 표시되고 링크 클릭시 해당 header로 정상적으로 이동한다.
+  <img src={gatsbyTOCSassBefore} alt="TOC css 적용 전" style="border: 1px solid #ccc" />
+  <br />
+
+### css 및 scroll handler 적용 후  
+  <img src={gatsbyTOCSassAfter} alt="TOC css 적용 후"  style="border: 1px solid #ccc" />  
+  <br />
+
+#### 스타일 수정  
+- /src/style/layout.sass  
+  ```sass
+    aside
+      position: fixed
+      top: 50px
+      right: 20px
+      float: right
+      width: 300px
+      border-left: 3px solid #1ac5be
+      ul
+        margin-left: 10px
+        margin-bottom: 0
+        list-style: none
+        padding: 0
+        li
+          &:last-child
+            margin-bottom: 0
+        a
+          color: #727273
+          font-size: 14px
+          cursor: pointer
+          transition: all linear .3s
+          &.selected
+            color: #1ac5be
+            text-decoration: underline
+            font-weight: 600
+          &:hover
+            color: #1ac5be
+  ```
+  <br />
+
+#### 스크롤에 따라 메인화면 header에 맞는 toc선택되도록 수정  
+- /src/component/layout.tsx
+  ```typescript
+  const scrollHandler = () => {
+    const toc = document.getElementsByTagName("aside")
+    if(!toc || toc.length < 0 || !toc[0] ||  !toc[0].style || toc[0].offsetWidth === 0) {
+      return;
+    }
+    
+    const anchor_holder = document.getElementsByClassName("anchor-header")
+    if(!anchor_holder || anchor_holder.length <= 0) {
+      return;
+    }
+    let selected_anchor = null
+    const anchor_holder_arr = Array.from(anchor_holder)
+    for(let a of anchor_holder_arr){
+      if(a.getBoundingClientRect().top > -30) {
+        selected_anchor = a.getAttribute("href")
+        break
+      }
+    }
+    if(!selected_anchor) {
+      selected_anchor = anchor_holder_arr[anchor_holder_arr.length -1].getAttribute("href")
+    }
+    document.querySelectorAll("aside a.selected").forEach(a => {
+      a.classList.remove("selected");
+    })
+    if(selected_anchor) {
+      const toc_selected = document.querySelector("aside a[href='"+ decodeURIComponent(selected_anchor) +"']")
+      toc_selected && toc_selected.classList.add("selected")
+    }
+  }
+    ...
+    // body에 scroll event listener 추가
+    // SSR 에러 방지(typeof document !== "undefined")
+    typeof document !== "undefined" && document.body.addEventListener("scroll", scrollHandler)
+    ...
+    
+  ```
+
+
+
+  
