@@ -8,6 +8,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'airbnb-base',
     'prettier',
+    'plugin:jsx-a11y/recommended'
   ],
   settings: {
     react: {
