@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import BlogCard from "../components/blogCard";
-import { Grid } from "@material-ui/core";
+import { Row, Col } from "antd";
 import Spinner from "../components/spinner";
 import Seo from "../components/seo"
 
@@ -29,6 +29,11 @@ interface IndexPageProps {
     }
   }
 }
+
+const colStyle= {
+  padding: "8px 0"
+};
+
 /**
  * @constructor
  */
@@ -42,13 +47,18 @@ export default function IndexPage({ data }: IndexPageProps){
         <div className="indexContainer">
           <h4>{data.allMdx.totalCount} Posts</h4>
           <div className="cardContainer">
-            <Grid container spacing={1}>
+            <Row>
               {data.allMdx.edges.map(( { node} ) => (
-                <Grid item key={node.id} xs={12} sm={12} md={6} lg={4} xl={4}>
+                <Col
+                  key={node.id}
+                  className="gutter-row"
+                  xs={24} sm={24} md={12} lg={8} xl={8}
+                  style={{padding: '0 4px 8px'}}
+                >
                   <BlogCard node={node}/>
-                </Grid>
+                </Col>
               ))}
-            </Grid>
+            </Row>
           </div>
         </div>
       </Layout>
