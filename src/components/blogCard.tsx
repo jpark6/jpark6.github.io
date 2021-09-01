@@ -1,12 +1,8 @@
 import * as React from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-} from "@material-ui/core";
-import {formatDate} from "../script/common"
-import { Link } from "gatsby"
+import {formatDate} from '../script/common';
+import { Link } from 'gatsby';
+import { Card } from 'antd';
+const { Meta } = Card;
 
 interface BlogCardProps {
   node:{
@@ -31,20 +27,22 @@ interface BlogCardProps {
 export default function BlogCard({ node }: BlogCardProps){
   return (
     <Link to={node.frontmatter.slug}> 
-      <Card>
-        <CardHeader
+      <Card
+        hoverable
+        bordered={false}
+        cover={
+          <img
+            src={node.frontmatter.thumbnail}
+            alt={node.frontmatter.title}
+            style={{width:'100%', height:'270px', marginBottom:0, borderBottom: '1px solid #f0f0f0', objectFit: 'cover'}}
+          />
+        }
+        style={{backgroundColor: 'white', border: '1px solid #ddd'}}
+      >
+        <Card.Meta
           title={node.frontmatter.title}
-          subheader={formatDate(node.frontmatter.date)}
+          description={formatDate(node.frontmatter.date)}
         />
-        <CardMedia
-          component="img"
-          image={node.frontmatter.thumbnail}
-          alt={node.frontmatter.title}
-          title={node.frontmatter.title}
-        />
-        <CardContent>
-          {node.excerpt}
-        </CardContent>
       </Card>
     </Link>
   )
