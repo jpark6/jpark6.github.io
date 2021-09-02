@@ -1,12 +1,7 @@
-import * as React from 'react'
-import List from '@material-ui/core/List'
-import Divider from '@material-ui/core/Divider'
-import MainMenu from './mainMenu'
-import { graphql, Link, useStaticQuery } from "gatsby"
-import { IconButton } from "@material-ui/core"
-import MenuIcon from "@material-ui/icons/Menu"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAngleLeft} from "@fortawesome/free-solid-svg-icons"
+import * as React from 'react';
+import { graphql, Link, useStaticQuery } from "gatsby";
+import { Menu, Button } from 'antd';
+import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 
 interface SideBarProps {
   open: boolean
@@ -75,38 +70,65 @@ export default function SideBar({open, slug, handleDrawerOpen, handleDrawerClose
       } else {
         dir_arr[dir_idx].value.push(depth2_obj);
       }
-    })
+    }
+  );
+  
+  // 활성 서브메뉴 
+  const selectMenu = !!slug && slug.includes("/") ? slug.split("/")[1] : "";
+  
 
   return (
     open ? (
-    <nav
-      className="sidebar"
-      >
+    <nav className="sidebar">
       <div className="sidebarDiv">
-      <header>
-        <Link to="/"><h2 className="sidebar-title">{data.site.siteMetadata.title}</h2></Link>
-        <IconButton
-          aria-label="close drawer"
-          onClick={handleDrawerClose}
-          className="hideSideBarBtn"
+        <header
+          style={{height: '50px', backgroundColor: '#1bc5be'}}
         >
-          <FontAwesomeIcon icon={faAngleLeft} />
-        </IconButton>
-      </header>
-      <List>
-      { dir_arr.map((e) => ( <MainMenu key={e.key} elem={e} slug={slug} /> ))}
-      </List>
-      <Divider />
+          <Link to="/">
+            <h2 className="sidebar-title">{data.site.siteMetadata.title}</h2>
+          </Link>
+          <Button
+            className="hideSideBarBtn"
+            onClick={handleDrawerClose}
+          >
+            <CloseOutlined />
+          </Button>
+        </header>
+        <Menu
+          mode="inline"
+          defaultSelectedKeys={[selectMenu]}
+          defaultOpenKeys={[selectMenu]}
+          style={{borderRight: '1px solid #fafafa'}}
+        >
+        { 
+          dir_arr.map(
+            (e) => (
+              <Menu.SubMenu key={e.key} title={e.key}>
+                {
+                  e.value.map((e1) => {
+                    return (
+                      <Menu.Item key={e1.key}>
+                        <Link to={e1.value}>
+                          {e1.key}
+                        </Link>
+                      </Menu.Item>
+                    )
+                  })
+                }
+              </Menu.SubMenu>
+            )
+          )
+        }
+        </Menu>
       </div>
     </nav>
     ) : (
-      <IconButton
-        aria-label="open drawer"
-        onClick={handleDrawerOpen}
+      <Button
         className="showSideBarBtn"
+        onClick={handleDrawerOpen}
       >
-        <MenuIcon />
-      </IconButton>
+        <MenuOutlined />
+      </Button>
     )
   )
 }
