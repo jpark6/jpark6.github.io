@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgatsby_blog_typescript=self.webpackChunkgatsby_blog_typescript||[]).push([[473],{6304:function(t,e,l){l.r(e);l(7294);var o=l(5444),n=l(6779),a=l(7447),p=l(7918);e.default=function(){return(0,p.tZ)(n.Z,null,(0,p.tZ)(a.Z,{title:"Page two",lang:"ko"}),(0,p.tZ)("h1",null,"Hi from the second page"),(0,p.tZ)("p",null,"Welcome to page 2"),(0,p.tZ)(o.Link,{to:"/"},"Go back to the homepage"))}}}]);
+//# sourceMappingURL=component---src-pages-page-2-tsx-a92a9cb1bb746c17393a.js.map

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://jpark6.github.io/sitemap/sitemap-index.xml
+Host: https://jpark6.github.io

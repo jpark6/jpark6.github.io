@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgatsby_blog_typescript=self.webpackChunkgatsby_blog_typescript||[]).push([[218],{3205:function(t,n,u){u.r(n),u.d(n,{default:function(){return o}});u(7294);var e=u(6779),s=u(7447),l=u(7918);function o(){return(0,l.tZ)(e.Z,null,(0,l.tZ)(s.Z,{title:"404: Not found",lang:"ko"}),(0,l.tZ)("h1",null,"게시글을 찾지 못했습니다."),(0,l.tZ)("p",null,"You just hit a route that doesn't exist... the sadness."))}}}]);
+//# sourceMappingURL=component---src-pages-404-tsx-f3a571a4211a07ef1503.js.map
