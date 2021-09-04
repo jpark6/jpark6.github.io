@@ -1,14 +1,14 @@
 import * as React  from 'react';
-import {CircularProgress} from "@material-ui/core";
+import { LoadingOutlined } from "@ant-design/icons";
 import {useEffect, useRef, useState} from "react";
 
 export default function Spinner(){
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
   const beforeLoadPage = useRef() as React.MutableRefObject<HTMLDivElement>;
   useEffect(() => {
     setTimeout(() => {
       setLoaded(true)
-    },1000)
+    },2000);
   })
 
   return (
@@ -17,7 +17,9 @@ export default function Spinner(){
       !loaded
       &&
       <div className="beforeLoadPage" ref={beforeLoadPage}>
-        <CircularProgress />
+        <LoadingOutlined
+          style={{ fontSize: '64px', color: '#1ac5be'}}
+        />
       </div>
     }
     </>

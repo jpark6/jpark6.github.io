@@ -1,8 +1,6 @@
 import * as React from 'react'
 import SearchBox from './searchBox'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEnvelope, faSearch } from "@fortawesome/free-solid-svg-icons"
-import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import { SearchOutlined, GithubOutlined, MailOutlined } from "@ant-design/icons";
 import { graphql, useStaticQuery } from "gatsby"
 import { Dispatch, SetStateAction, useState } from "react"
 
@@ -75,22 +73,12 @@ export default function searchBar() {
         onChange={handleSearchInput}
         value={query}
       />
-      <FontAwesomeIcon
-        icon={faSearch}
-      />
+      <SearchOutlined style={{fontSize: '16px'}} />
       <button type="button">
-        <FontAwesomeIcon
-          onClick={openGitRepository}
-          icon={faGithub}
-          size="2x"
-        />
+        <GithubOutlined />
       </button>
       <button type="button">
-        <FontAwesomeIcon
-          onClick={mailToMe}
-          icon={faEnvelope}
-          size="2x"
-        />
+        <MailOutlined />
       </button>
       <button
         type="button"

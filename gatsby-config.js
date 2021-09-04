@@ -77,7 +77,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-antd`,
-    `gatsby-plugin-fontawesome-css`,
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-sitemap`,
